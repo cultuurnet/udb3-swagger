@@ -2562,7 +2562,7 @@
             "get": {
                 "summary": "Retrieve all permissions of the role.",
                 "description": "Authentication and user management permission are required.",
-                "operationId": "getPermissions",
+                "operationId": "getRolePermissions",
                 "produces": [
                     "application/ld+json"
                 ],
@@ -2579,6 +2579,64 @@
                             "items": {
                                 "$ref": "#/definitions/Permission"
                             }
+                        }
+                    }
+                },
+                "tags": [
+                    "Permission",
+                    "Role"
+                ]
+            }
+        },
+        "/roles/{roleId}/permissions/{permissionKey}": {
+            "put": {
+                "summary": "Add a permission to the role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "addRolePermission",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/permissionKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
+                        }
+                    }
+                },
+                "tags": [
+                    "Permission",
+                    "Role"
+                ]
+            },
+            "delete": {
+                "summary": "Remove a permission from the role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "deleteRolePermission",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/permissionKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
                         }
                     }
                 },
@@ -4562,6 +4620,13 @@
             "required": true,
             "type": "string",
             "format": "uuid"
+        },
+        "permissionKey": {
+            "name": "permissionKey",
+            "in": "path",
+            "description": "Key of a permission",
+            "required": true,
+            "type": "string"
         }
     }
 }
