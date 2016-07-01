@@ -2387,7 +2387,7 @@
             "get": {
                 "summary": "Retrieve roles, optionally filtered by name, with a given start and limit.",
                 "description": "Authentication and user management permission are required.",
-                "operationId": "roleSearch",
+                "operationId": "searchRoles",
                 "produces": [
                     "application/json"
                 ],
@@ -2462,6 +2462,37 @@
                             "required": [
                                 "roleId"
                             ]
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
+            }
+        },
+        "/roles/{roleId}": {
+            "get": {
+                "summary": "Retrieve a specific role by its id",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "getRole",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "roleId",
+                        "in": "path",
+                        "description": "Unique identifier of the role.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A role detail",
+                        "schema": {
+                            "$ref": "#/definitions/RoleDetail"
                         }
                     }
                 },
@@ -4309,7 +4340,7 @@
                 "member": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/RoleObject"
+                        "$ref": "#/definitions/RoleDetail"
                     }
                 }
             },
@@ -4319,7 +4350,7 @@
                 "member"
             ]
         },
-        "RoleObject": {
+        "RoleDetail": {
             "required": [
                 "uuid",
                 "name",
