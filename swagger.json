@@ -2266,7 +2266,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/commandWithAggregateUuid"
                         }
                     }
                 },
@@ -2298,7 +2298,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/commandWithAggregateUuid"
                         }
                     }
                 },
@@ -2374,7 +2374,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/commandWithAggregateUuid"
                         }
                     }
                 },
@@ -3426,6 +3426,17 @@
             ]
         },
         "command": {
+            "required": [
+                "commandId"
+            ],
+            "properties": {
+                "commandId": {
+                    "type": "string",
+                    "example": "8cdc13e62efaecb9d8c21d59a29b9de4"
+                }
+            }
+        },
+        "commandWithAggregateUuid": {
             "required": [
                 "commandId",
                 "uuid"
