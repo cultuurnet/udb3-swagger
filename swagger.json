@@ -2428,6 +2428,46 @@
                     "Search",
                     "Role"
                 ]
+            },
+            "post": {
+                "summary": "Create a new role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "createRole",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the required fields of a role.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateRole"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the created role.",
+                        "schema": {
+                            "properties": {
+                                "roleId": {
+                                    "type": "string",
+                                    "format": "uuid",
+                                    "description": "The unique identifier of the created role.",
+                                    "example": "0823f57e-a6bd-450a-b4f5-8459b4b11043"
+                                }
+                            },
+                            "required": [
+                                "roleId"
+                            ]
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
             }
         }
     },
@@ -4293,11 +4333,22 @@
                 },
                 "name": {
                     "type": "string",
-                    "example": "Bloso"
+                    "example": "Beheerder west-vlaanderen"
                 },
                 "constraint": {
                     "type": "string",
                     "example": "city:leuven"
+                }
+            }
+        },
+        "CreateRole": {
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Beheerder west-vlaanderen"
                 }
             }
         }
