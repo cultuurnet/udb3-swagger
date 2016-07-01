@@ -4481,7 +4481,6 @@
             }
         },
         "UpdateRole": {
-            "required": [],
             "properties": {
                 "name": {
                     "type": "string",
