@@ -2499,6 +2499,35 @@
                 "tags": [
                     "Role"
                 ]
+            },
+            "delete": {
+                "summary": "Delete a specific role by its id",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "deleteRole",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "roleId",
+                        "in": "path",
+                        "description": "Unique identifier of the role.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
             }
         }
     },
