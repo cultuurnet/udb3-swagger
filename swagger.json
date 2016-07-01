@@ -2560,9 +2560,9 @@
         },
         "/permissions/": {
             "get": {
-                "summary": "Retrieve roles, optionally filtered by name, with a given start and limit.",
+                "summary": "Retrieve all existing permissions.",
                 "description": "Authentication and user management permission are required.",
-                "operationId": "searchRoles",
+                "operationId": "getPermissions",
                 "produces": [
                     "application/ld+json"
                 ],
