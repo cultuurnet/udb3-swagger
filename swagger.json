@@ -2648,7 +2648,7 @@
         },
         "/roles/{roleId}/labels/": {
             "get": {
-                "summary": "Retrieve all labels usable by role.",
+                "summary": "Retrieve all labels usable by the role.",
                 "description": "Authentication and user management permission are required.",
                 "operationId": "getRoleLabels",
                 "produces": [
