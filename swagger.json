@@ -1522,27 +1522,6 @@
                 ]
             }
         },
-        "/uitid/user": {
-            "get": {
-                "summary": "Retrieve all information about the current user.",
-                "description": "Authentication is required.",
-                "operationId": "getUserInformation",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "The information available about the current user.",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                },
-                "tags": [
-                    "User"
-                ]
-            }
-        },
         "/api/1.0/user/labels": {
             "get": {
                 "summary": "Retrieve labels used recently by the current user.",
