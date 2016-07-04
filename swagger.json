@@ -2227,7 +2227,7 @@
                 ]
             }
         },
-        "/labels/{identifier}": {
+        "/labels/{labelIdentifier}": {
             "get": {
                 "summary": "View the details a label",
                 "operationId": "getLabel",
@@ -4599,19 +4599,11 @@
     },
     "parameters": {
         "labelIdentifier": {
-            "name": "identifier",
+            "name": "labelIdentifier",
             "in": "path",
             "description": "The unique name or uuid that identifies a label.",
             "required": true,
             "type": "string"
-        },
-        "labelId": {
-            "name": "id",
-            "in": "path",
-            "type": "string",
-            "required": true,
-            "format": "uuid",
-            "description": "The unique identifier of a label."
         },
         "roleId": {
             "name": "roleId",
