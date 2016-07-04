@@ -2734,6 +2734,36 @@
                 ]
             }
         },
+        "/roles/{roleId}/users/": {
+            "get": {
+                "summary": "Retrieve all users with the given role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "getRoleUsers",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of users",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserIdentity"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "User",
+                    "Role"
+                ]
+            }
+        },
         "/permissions/": {
             "get": {
                 "summary": "Retrieve all permissions.",
@@ -3340,6 +3370,29 @@
                 "currentLocation",
                 "calendarId"
             ]
+        },
+        "UserIdentity": {
+            "required": [
+                "uid",
+                "email",
+                "nick"
+            ],
+            "properties": {
+                "uid": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "A universally unique identifier.",
+                    "example": "6f072ba8-c510-40ac-b387-51f582650e27"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "alberto@email.es"
+                },
+                "nick": {
+                    "type": "string",
+                    "example": "El Pistolero"
+                }
+            }
         },
         "SearchResult": {
             "properties": {
