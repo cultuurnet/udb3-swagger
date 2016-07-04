@@ -2764,6 +2764,64 @@
                 ]
             }
         },
+        "/roles/{roleId}/users/{userId}": {
+            "put": {
+                "summary": "Couple a user to the role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "addRoleUser",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/userId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
+                        }
+                    }
+                },
+                "tags": [
+                    "User",
+                    "Role"
+                ]
+            },
+            "delete": {
+                "summary": "Remove a user from the role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "deleteRoleUser",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/userId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
+                        }
+                    }
+                },
+                "tags": [
+                    "User",
+                    "Role"
+                ]
+            }
+        },
         "/permissions/": {
             "get": {
                 "summary": "Retrieve all permissions.",
@@ -4758,6 +4816,13 @@
             "name": "permissionKey",
             "in": "path",
             "description": "Key of a permission",
+            "required": true,
+            "type": "string"
+        },
+        "userId": {
+            "name": "userId",
+            "in": "path",
+            "description": "Id of a user",
             "required": true,
             "type": "string"
         }
