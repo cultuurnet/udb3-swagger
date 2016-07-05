@@ -1522,7 +1522,7 @@
                 ]
             }
         },
-        "/uitid/user": {
+        "/user": {
             "get": {
                 "summary": "Retrieve all information about the current user.",
                 "description": "Authentication is required.",
