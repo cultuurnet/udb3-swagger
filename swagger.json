@@ -2382,6 +2382,547 @@
                     "Label"
                 ]
             }
+        },
+        "/roles/": {
+            "get": {
+                "summary": "Retrieve roles, optionally filtered by name, with a given start and limit.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "searchRoles",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "The name or part of the name of the role(s) to search (case-insensitive).",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The limit of roles included in the result set. When omitted it returns all matching roles.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "The number of roles to skip from the start of the result set. When omitted it starts from the first position.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of roles",
+                        "schema": {
+                            "$ref": "#/definitions/RoleSearchResult"
+                        }
+                    }
+                },
+                "tags": [
+                    "Search",
+                    "Role"
+                ]
+            },
+            "post": {
+                "summary": "Create a new role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "createRole",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the required fields of a role.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateRole"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the created role.",
+                        "schema": {
+                            "properties": {
+                                "roleId": {
+                                    "type": "string",
+                                    "format": "uuid",
+                                    "description": "The unique identifier of the created role.",
+                                    "example": "0823f57e-a6bd-450a-b4f5-8459b4b11043"
+                                }
+                            },
+                            "required": [
+                                "roleId"
+                            ]
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
+            }
+        },
+        "/roles/{roleId}": {
+            "get": {
+                "summary": "Retrieve a specific role by its id",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "getRole",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A role detail",
+                        "schema": {
+                            "$ref": "#/definitions/RoleDetail"
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
+            },
+            "delete": {
+                "summary": "Delete a specific role by its id",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "deleteRole",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
+            },
+            "patch": {
+                "summary": "Update a specific role by its id.",
+                "operationId": "updateRole",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "name": "Content-Type",
+                        "in": "header",
+                        "type": "string",
+                        "description": "application/ld+json;domain-model=RenameRole, application/ld+json;domain-model=SetConstraint"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the required information for the update of the name of a role. The RenameRole model requires a 'name' body parameter, the SetConstraint domain-model requires a 'constraint' body parameter.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateRole"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
+            }
+        },
+        "/roles/{roleId}/permissions/": {
+            "get": {
+                "summary": "Retrieve all permissions of the role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "getRolePermissions",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of permissions",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Permission"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Permission",
+                    "Role"
+                ]
+            }
+        },
+        "/roles/{roleId}/permissions/{permissionKey}": {
+            "put": {
+                "summary": "Add a permission to the role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "addRolePermission",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/permissionKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
+                        }
+                    }
+                },
+                "tags": [
+                    "Permission",
+                    "Role"
+                ]
+            },
+            "delete": {
+                "summary": "Remove a permission from the role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "deleteRolePermission",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/permissionKey"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
+                        }
+                    }
+                },
+                "tags": [
+                    "Permission",
+                    "Role"
+                ]
+            }
+        },
+        "/roles/{roleId}/labels/": {
+            "get": {
+                "summary": "Retrieve all labels usable by the role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "getRoleLabels",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of labels",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/LabelObject"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Label",
+                    "Role"
+                ]
+            }
+        },
+        "/roles/{roleId}/labels/{labelIdentifier}": {
+            "put": {
+                "summary": "Make a label usable by the role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "addRoleLabel",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/labelIdentifier"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
+                        }
+                    }
+                },
+                "tags": [
+                    "Label",
+                    "Role"
+                ]
+            },
+            "delete": {
+                "summary": "Make a label unusable by the role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "deleteRoleLabel",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/labelIdentifier"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
+                        }
+                    }
+                },
+                "tags": [
+                    "Label",
+                    "Role"
+                ]
+            }
+        },
+        "/roles/{roleId}/users/": {
+            "get": {
+                "summary": "Retrieve all users with the given role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "getRoleUsers",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of users",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/UserIdentity"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "User",
+                    "Role"
+                ]
+            }
+        },
+        "/roles/{roleId}/users/{userId}": {
+            "put": {
+                "summary": "Couple a user to the role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "addRoleUser",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/userId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
+                        }
+                    }
+                },
+                "tags": [
+                    "User",
+                    "Role"
+                ]
+            },
+            "delete": {
+                "summary": "Remove a user from the role.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "deleteRoleUser",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/userId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/command"
+                        }
+                    }
+                },
+                "tags": [
+                    "User",
+                    "Role"
+                ]
+            }
+        },
+        "/permissions/": {
+            "get": {
+                "summary": "Retrieve all permissions.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "getPermissions",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "A list of permissions",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Permission"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Permission"
+                ]
+            }
+        },
+        "/users/": {
+            "get": {
+                "summary": "Retrieve users, optionally filtered by email, with a given start and limit.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "searchUsers",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "The email or part of the email of the user(s) to search (case-insensitive).",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The limit of roles included in the result set. When omitted it returns all matching roles.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "The number of roles to skip from the start of the result set. When omitted it starts from the first position.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of users",
+                        "schema": {
+                            "$ref": "#/definitions/UserSearchResult"
+                        }
+                    }
+                },
+                "tags": [
+                    "Search",
+                    "User"
+                ]
+            }
+        },
+        "/users/{userId}/roles/": {
+            "get": {
+                "summary": "Retrieve all roles that the user has.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "getUserRoles",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/userId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RoleDetail"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "User",
+                    "Role"
+                ]
+            }
         }
     },
     "tags": [
@@ -2428,6 +2969,14 @@
         {
             "name": "Media",
             "description": "Operations related to media."
+        },
+        {
+            "name": "Role",
+            "description": "Operations related to roles."
+        },
+        {
+            "name": "Permission",
+            "description": "Operations related to permissions."
         }
     ],
     "definitions": {
@@ -2956,6 +3505,29 @@
                 "currentLocation",
                 "calendarId"
             ]
+        },
+        "UserIdentity": {
+            "required": [
+                "uuid",
+                "email",
+                "username"
+            ],
+            "properties": {
+                "uuid": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "A universally unique identifier.",
+                    "example": "6f072ba8-c510-40ac-b387-51f582650e27"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "alberto@email.es"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "El Pistolero"
+                }
+            }
         },
         "SearchResult": {
             "properties": {
@@ -4213,6 +4785,117 @@
             "required": [
                 "typicalAgeRange"
             ]
+        },
+        "RoleSearchResult": {
+            "properties": {
+                "itemsPerPage": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 30
+                },
+                "totalItems": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 3562
+                },
+                "member": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RoleDetail"
+                    }
+                }
+            },
+            "required": [
+                "itemsPerPage",
+                "totalItems",
+                "member"
+            ]
+        },
+        "RoleDetail": {
+            "required": [
+                "uuid",
+                "name",
+                "constraint"
+            ],
+            "properties": {
+                "uuid": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "3aad5023-84e2-4ba9-b1ce-201cee64504c"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Beheerder west-vlaanderen"
+                },
+                "constraint": {
+                    "type": "string",
+                    "example": "city:leuven"
+                }
+            }
+        },
+        "CreateRole": {
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Beheerder west-vlaanderen"
+                }
+            }
+        },
+        "UpdateRole": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Beheerder west-vlaanderen"
+                },
+                "constraint": {
+                    "type": "string",
+                    "example": "city:leuven"
+                }
+            }
+        },
+        "Permission": {
+            "required": [
+                "key",
+                "name"
+            ],
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "example": "MANAGE_USERS"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Gebruikers beheren"
+                }
+            }
+        },
+        "UserSearchResult": {
+            "properties": {
+                "itemsPerPage": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 30
+                },
+                "totalItems": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 3562
+                },
+                "member": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/UserIdentity"
+                    }
+                }
+            },
+            "required": [
+                "itemsPerPage",
+                "totalItems",
+                "member"
+            ]
         }
     },
     "parameters": {
@@ -4220,6 +4903,28 @@
             "name": "labelIdentifier",
             "in": "path",
             "description": "The unique name or uuid that identifies a label.",
+            "required": true,
+            "type": "string"
+        },
+        "roleId": {
+            "name": "roleId",
+            "in": "path",
+            "description": "Unique identifier of a role.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+        },
+        "permissionKey": {
+            "name": "permissionKey",
+            "in": "path",
+            "description": "Key of a permission",
+            "required": true,
+            "type": "string"
+        },
+        "userId": {
+            "name": "userId",
+            "in": "path",
+            "description": "Id of a user",
             "required": true,
             "type": "string"
         }
