@@ -2924,7 +2924,7 @@
                 ]
             }
         },
-        "/user/permissions": {
+        "/user/permissions/": {
             "get": {
                 "summary": "Retrieve all the current user's permissions",
                 "description": "Authentication required",
