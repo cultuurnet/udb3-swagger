@@ -2393,7 +2393,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "name",
+                        "name": "query",
                         "in": "query",
                         "description": "The name or part of the name of the role(s) to search (case-insensitive).",
                         "required": false,
