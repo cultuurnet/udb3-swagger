@@ -2894,6 +2894,32 @@
                 ]
             }
         },
+        "/users/{userId}": {
+            "get": {
+                "summary": "Retrieve a single user with the given userId.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "getUserById",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/userId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A single user",
+                        "schema": {
+                            "$ref": "#/definitions/UserIdentity"
+                        }
+                    }
+                },
+                "tags": [
+                    "User"
+                ]
+            }
+        },
         "/users/{userId}/roles/": {
             "get": {
                 "summary": "Retrieve all roles that the user has.",
