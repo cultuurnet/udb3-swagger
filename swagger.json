@@ -2920,6 +2920,36 @@
                 ]
             }
         },
+        "/users/emails/{emailAddress}": {
+            "get": {
+                "summary": "Retrieve a single user with the given e-mail address.",
+                "description": "Authentication and user management permission are required.",
+                "operationId": "getUserByEmailAddress",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "emailAddress",
+                        "in": "path",
+                        "description": "The email of the user to retrieve (case-insensitive).",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A single user",
+                        "schema": {
+                            "$ref": "#/definitions/UserIdentity"
+                        }
+                    }
+                },
+                "tags": [
+                    "User"
+                ]
+            }
+        },
         "/users/{userId}/roles/": {
             "get": {
                 "summary": "Retrieve all roles that the user has.",
