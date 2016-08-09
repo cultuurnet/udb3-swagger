@@ -758,6 +758,37 @@
                 ]
             }
         },
+        "/place/{cdbid}/events": {
+            "get": {
+                "summary": "A list of events on the place",
+                "operationId": "getPlaceEvents",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "cdbid",
+                        "in": "path",
+                        "description": "The unique identifier of the place.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An event list.",
+                        "schema": {
+                            "$ref": "#/definitions/EventList"
+                        }
+                    }
+                },
+                "tags": [
+                    "Place",
+                    "Event"
+                ]
+            }
+        },
         "/place/{cdbid}/organizer": {
             "post": {
                 "summary": "Add an organizer to a place.",
@@ -3004,6 +3035,37 @@
                     "Role"
                 ]
             }
+        },
+        "/dashboard/items/": {
+            "get": {
+                "summary": "Retrieve all items on the user's dashboard",
+                "description": "Authentication required",
+                "operationId": "getDashboardItems",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The number of the page which the paged result should return",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of dashboard items",
+                        "schema": {
+                            "$ref": "#/definitions/DashboardItems"
+                        }
+                    }
+                },
+                "tags": [
+                    "Dashboard"
+                ]
+            }
         }
     },
     "tags": [
@@ -3058,6 +3120,10 @@
         {
             "name": "Permission",
             "description": "Operations related to permissions."
+        },
+        {
+            "name": "Dashboard",
+            "description": "Operations related to dashboard."
         }
     ],
     "definitions": {
@@ -4221,6 +4287,46 @@
                 "totalItems",
                 "member"
             ]
+        },
+        "DashboardItems": {
+            "properties": {
+                "itemsPerPage": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 30
+                },
+                "totalItems": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1
+                },
+                "member": {
+                    "type": "array",
+                    "items": {
+                        "id": {
+                            "type": "string",
+                            "example": "http://udb-silex.dev/event/7616a359-b95c-48c0-9981-502732b8d957"
+                        },
+                        "type": {
+                            "type": "string",
+                            "example": "Event"
+                        }
+                    }
+                }
+            }
+        },
+        "EventList": {
+            "properties": {
+                "events": {
+                    "type": "array",
+                    "items": {
+                        "id": {
+                            "type": "string",
+                            "example": "7616a359-b95c-48c0-9981-502732b8d957"
+                        }
+                    }
+                }
+            }
         },
         "PlacesList": {
             "allOf": [
