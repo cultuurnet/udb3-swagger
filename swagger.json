@@ -4303,13 +4303,16 @@
                 "member": {
                     "type": "array",
                     "items": {
-                        "id": {
-                            "type": "string",
-                            "example": "http://udb-silex.dev/event/7616a359-b95c-48c0-9981-502732b8d957"
-                        },
-                        "type": {
-                            "type": "string",
-                            "example": "Event"
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "example": "http://udb-silex.dev/event/7616a359-b95c-48c0-9981-502732b8d957"
+                            },
+                            "type": {
+                                "type": "string",
+                                "example": "Event"
+                            }
                         }
                     }
                 }
@@ -4320,10 +4323,8 @@
                 "events": {
                     "type": "array",
                     "items": {
-                        "id": {
-                            "type": "string",
-                            "example": "7616a359-b95c-48c0-9981-502732b8d957"
-                        }
+                        "type": "string",
+                        "example": "7616a359-b95c-48c0-9981-502732b8d957"
                     }
                 }
             }
