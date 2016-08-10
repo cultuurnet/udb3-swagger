@@ -4316,7 +4316,12 @@
                         }
                     }
                 }
-            }
+            },
+            "required": [
+                "itemsPerPage",
+                "totalItems",
+                "member"
+            ]
         },
         "EventList": {
             "properties": {
@@ -4327,7 +4332,10 @@
                         "example": "7616a359-b95c-48c0-9981-502732b8d957"
                     }
                 }
-            }
+            },
+            "required": [
+                "events"
+            ]
         },
         "PlacesList": {
             "allOf": [
