@@ -96,6 +96,46 @@
                 "tags": [
                     "Event"
                 ]
+            },
+            "patch": {
+                "summary": "Patch an event with one of the available commands",
+                "description": "Authentication is required together with the right permissions to perform the action on a specific event",
+                "operationId": "patchEvent",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "consumes": [
+                    "application/ld+json;domain-model=ApproveOffer",
+                    "application/ld+json;domain-model=FlagOfferAsDuplicate",
+                    "application/ld+json;domain-model=FlagOfferAsInappropriate",
+                    "application/ld+json;domain-model=RejectOffer"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the required information to perform an action on the offer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EventCommand"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/CommandInfo"
+                        }
+                    }
+                },
+                "tags": [
+                    "Event",
+                    "Moderation"
+                ]
             }
         },
         "/event/{cdbid}/organizer": {
@@ -5102,6 +5142,26 @@
                 "totalItems",
                 "member"
             ]
+        },
+        "EventCommand": {
+            "properties": {
+                "reason": {
+                    "type": "string",
+                    "example": "voeg afbeelding en prijsinfo toe"
+                }
+            }
+        },
+        "CommandInfo": {
+            "required": [
+                "commandId"
+            ],
+            "properties": {
+                "commandId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "c75003dd-cc77-4424-a186-66aa4abd917f"
+                }
+            }
         }
     },
     "parameters": {
@@ -5133,6 +5193,14 @@
             "description": "Id of a user",
             "required": true,
             "type": "string"
+        },
+        "cdbid": {
+            "name": "cdbid",
+            "in": "path",
+            "description": "The unique identifier of the item.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
         }
     }
 }
