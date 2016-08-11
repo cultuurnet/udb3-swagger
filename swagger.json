@@ -5060,7 +5060,17 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "example": "MANAGE_USERS"
+                    "example": "MANAGE_USERS",
+                    "enum": [
+                        "AANBOD_INVOEREN",
+                        "AANBOD_BEWERKEN",
+                        "AANBOD_MODEREREN",
+                        "AANBOD_VERWIJDEREN",
+                        "AANBOD_VALIDEREN",
+                        "ORGANISATIES_BEHEREN",
+                        "GEBRUIKERS_BEHEREN",
+                        "LABELS_BEHEREN"
+                    ]
                 },
                 "name": {
                     "type": "string",
