@@ -5089,7 +5089,7 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "example": "MANAGE_USERS",
+                    "example": "GEBRUIKERS_BEHEREN",
                     "enum": [
                         "AANBOD_INVOEREN",
                         "AANBOD_BEWERKEN",
@@ -5174,7 +5174,17 @@
             "in": "path",
             "description": "Key of a permission",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "enum": [
+                "AANBOD_INVOEREN",
+                "AANBOD_BEWERKEN",
+                "AANBOD_MODEREREN",
+                "AANBOD_VERWIJDEREN",
+                "AANBOD_VALIDEREN",
+                "ORGANISATIES_BEHEREN",
+                "GEBRUIKERS_BEHEREN",
+                "LABELS_BEHEREN"
+            ]
         },
         "userId": {
             "name": "userId",
