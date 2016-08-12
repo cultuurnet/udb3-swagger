@@ -3138,6 +3138,9 @@
                         "type": "string",
                         "example": "www.leuven.be"
                     }
+                },
+                "workflowStatus": {
+                    "$ref": "#/definitions/WorkflowStatus"
                 }
             },
             "required": [
@@ -3644,6 +3647,9 @@
                     "items": {
                         "$ref": "#/definitions/Term"
                     }
+                },
+                "workflowStatus": {
+                    "$ref": "#/definitions/WorkflowStatus"
                 }
             },
             "required": [
@@ -5021,6 +5027,16 @@
                     "example": "c75003dd-cc77-4424-a186-66aa4abd917f"
                 }
             }
+        },
+        "WorkflowStatus": {
+            "type": "string",
+            "enum": [
+                "DRAFT",
+                "READY_FOR_VALIDATION",
+                "APPROVED",
+                "REJECTED",
+                "DELETED"
+            ]
         }
     },
     "parameters": {
