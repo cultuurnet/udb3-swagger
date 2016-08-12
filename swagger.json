@@ -100,10 +100,10 @@
                     "application/ld+json"
                 ],
                 "consumes": [
-                    "application/ld+json;domain-model=ApproveOffer",
-                    "application/ld+json;domain-model=FlagOfferAsDuplicate",
-                    "application/ld+json;domain-model=FlagOfferAsInappropriate",
-                    "application/ld+json;domain-model=RejectOffer"
+                    "application/ld+json;domain-model=Approve",
+                    "application/ld+json;domain-model=FlagAsDuplicate",
+                    "application/ld+json;domain-model=FlagAsInappropriate",
+                    "application/ld+json;domain-model=Reject"
                 ],
                 "parameters": [
                     {
@@ -115,7 +115,7 @@
                         "description": "An object containing the required information to perform an action on the offer.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/EventCommand"
+                            "$ref": "#/definitions/ModerationCommand"
                         }
                     }
                 ],
@@ -730,6 +730,46 @@
                 },
                 "tags": [
                     "Place"
+                ]
+            },
+            "patch": {
+                "summary": "Patch a place with one of the available commands",
+                "description": "Authentication is required together with the right permissions to perform the action on a specific place",
+                "operationId": "patchPlace",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "consumes": [
+                    "application/ld+json;domain-model=Approve",
+                    "application/ld+json;domain-model=FlagAsDuplicate",
+                    "application/ld+json;domain-model=FlagAsInappropriate",
+                    "application/ld+json;domain-model=Reject"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the required information to perform an action on the place.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ModerationCommand"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/CommandInfo"
+                        }
+                    }
+                },
+                "tags": [
+                    "Place",
+                    "Moderation"
                 ]
             }
         },
@@ -4962,7 +5002,7 @@
                 "member"
             ]
         },
-        "EventCommand": {
+        "ModerationCommand": {
             "properties": {
                 "reason": {
                     "type": "string",
