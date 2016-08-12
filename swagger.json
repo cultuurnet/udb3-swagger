@@ -2482,36 +2482,6 @@
                 ]
             }
         },
-        "/roles/{roleId}/permissions/": {
-            "get": {
-                "summary": "Retrieve all permissions of the role.",
-                "description": "Authentication and user management permission are required.",
-                "operationId": "getRolePermissions",
-                "produces": [
-                    "application/ld+json"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/roleId"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of permissions",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Permission"
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "Permission",
-                    "Role"
-                ]
-            }
-        },
         "/roles/{roleId}/permissions/{permissionKey}": {
             "put": {
                 "summary": "Add a permission to the role.",
@@ -4893,7 +4863,8 @@
             "required": [
                 "uuid",
                 "name",
-                "constraint"
+                "constraint",
+                "permissions"
             ],
             "properties": {
                 "uuid": {
@@ -4908,6 +4879,12 @@
                 "constraint": {
                     "type": "string",
                     "example": "city:leuven"
+                },
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Permission"
+                    }
                 }
             }
         },
