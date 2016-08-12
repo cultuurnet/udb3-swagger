@@ -2451,15 +2451,13 @@
                 "produces": [
                     "application/ld+json"
                 ],
+                "consumes": [
+                    "application/ld+json;domain-model=RenameRole",
+                    "application/ld+json;domain-model=SetConstraint"
+                ],
                 "parameters": [
                     {
                         "$ref": "#/parameters/roleId"
-                    },
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "type": "string",
-                        "description": "application/ld+json;domain-model=RenameRole, application/ld+json;domain-model=SetConstraint"
                     },
                     {
                         "name": "body",
