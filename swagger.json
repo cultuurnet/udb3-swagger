@@ -2890,7 +2890,7 @@
                     {
                         "name": "email",
                         "in": "query",
-                        "description": "The email or part of the email of the user(s) to search (case-insensitive).",
+                        "description": "A valid email address with a specific domain. The wildcard '*' can be used in the local part.",
                         "required": false,
                         "type": "string"
                     },
