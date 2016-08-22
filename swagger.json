@@ -77,12 +77,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the cultural event.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     }
                 ],
                 "responses": {
@@ -96,6 +91,46 @@
                 "tags": [
                     "Event"
                 ]
+            },
+            "patch": {
+                "summary": "Patch an event with one of the available commands",
+                "description": "Authentication is required together with the right permissions to perform the action on a specific event",
+                "operationId": "patchEvent",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "consumes": [
+                    "application/ld+json;domain-model=Approve",
+                    "application/ld+json;domain-model=FlagAsDuplicate",
+                    "application/ld+json;domain-model=FlagAsInappropriate",
+                    "application/ld+json;domain-model=Reject"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the required information to perform an action on the offer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ModerationCommand"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/CommandInfo"
+                        }
+                    }
+                },
+                "tags": [
+                    "Event",
+                    "Moderation"
+                ]
             }
         },
         "/event/{cdbid}/organizer": {
@@ -107,12 +142,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the event.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -146,12 +176,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the cultural event.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     }
                 ],
                 "responses": {
@@ -176,12 +201,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the event.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     }
                 ],
                 "responses": {
@@ -215,12 +235,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the cultural event.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "lang",
@@ -248,7 +263,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -267,12 +282,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the cultural event.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "lang",
@@ -300,7 +310,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -318,12 +328,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the event.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -339,7 +344,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -355,19 +360,14 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the event.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -386,12 +386,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the cultural event.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -407,7 +402,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -440,7 +435,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -461,12 +456,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The universally unique identifier of the event object.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -482,7 +472,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     },
                     "400": {
@@ -505,12 +495,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The universally unique identifier of the event object.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -526,7 +511,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     },
                     "400": {
@@ -578,7 +563,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -616,7 +601,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -636,12 +621,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the cultural event.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "label",
@@ -655,7 +635,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -688,7 +668,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -737,12 +717,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     }
                 ],
                 "responses": {
@@ -756,6 +731,46 @@
                 "tags": [
                     "Place"
                 ]
+            },
+            "patch": {
+                "summary": "Patch a place with one of the available commands",
+                "description": "Authentication is required together with the right permissions to perform the action on a specific place",
+                "operationId": "patchPlace",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "consumes": [
+                    "application/ld+json;domain-model=Approve",
+                    "application/ld+json;domain-model=FlagAsDuplicate",
+                    "application/ld+json;domain-model=FlagAsInappropriate",
+                    "application/ld+json;domain-model=Reject"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the required information to perform an action on the place.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ModerationCommand"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/CommandInfo"
+                        }
+                    }
+                },
+                "tags": [
+                    "Place",
+                    "Moderation"
+                ]
             }
         },
         "/place/{cdbid}/events": {
@@ -767,12 +782,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     }
                 ],
                 "responses": {
@@ -798,12 +808,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -837,12 +842,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -858,7 +858,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -874,19 +874,14 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -904,12 +899,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     }
                 ],
                 "responses": {
@@ -943,12 +933,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The universally unique identifier of the place object.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -964,7 +949,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     },
                     "400": {
@@ -987,12 +972,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The universally unique identifier of the place object.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -1008,7 +988,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     },
                     "400": {
@@ -1060,7 +1040,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1098,7 +1078,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1118,12 +1098,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -1139,7 +1114,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1159,12 +1134,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "label",
@@ -1178,7 +1148,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1198,12 +1168,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "lang",
@@ -1231,7 +1196,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1250,12 +1215,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "lang",
@@ -1283,7 +1243,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1301,12 +1261,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -1348,12 +1303,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -1395,12 +1345,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the place.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     },
                     {
                         "name": "body",
@@ -1442,12 +1387,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the organizer.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     }
                 ],
                 "responses": {
@@ -1470,19 +1410,14 @@
                 ],
                 "parameters": [
                     {
-                        "name": "cdbid",
-                        "in": "path",
-                        "description": "The unique identifier of the organizer.",
-                        "required": true,
-                        "type": "string",
-                        "format": "uuid"
+                        "$ref": "#/parameters/cdbid"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1697,7 +1632,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1727,7 +1662,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1759,7 +1694,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1792,7 +1727,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1825,7 +1760,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1858,7 +1793,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -1891,7 +1826,7 @@
                     "202": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     },
                     "400": {
@@ -2092,7 +2027,7 @@
                     "202": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     },
                     "410": {
@@ -2139,7 +2074,7 @@
                     "202": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     },
                     "400": {
@@ -2201,7 +2136,7 @@
                     "202": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     },
                     "400": {
@@ -2542,7 +2477,7 @@
                     "202": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -2556,15 +2491,13 @@
                 "produces": [
                     "application/ld+json"
                 ],
+                "consumes": [
+                    "application/ld+json;domain-model=RenameRole",
+                    "application/ld+json;domain-model=SetConstraint"
+                ],
                 "parameters": [
                     {
                         "$ref": "#/parameters/roleId"
-                    },
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "type": "string",
-                        "description": "application/ld+json;domain-model=RenameRole, application/ld+json;domain-model=SetConstraint"
                     },
                     {
                         "name": "body",
@@ -2580,41 +2513,11 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
                 "tags": [
-                    "Role"
-                ]
-            }
-        },
-        "/roles/{roleId}/permissions/": {
-            "get": {
-                "summary": "Retrieve all permissions of the role.",
-                "description": "Authentication and user management permission are required.",
-                "operationId": "getRolePermissions",
-                "produces": [
-                    "application/ld+json"
-                ],
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/roleId"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of permissions",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Permission"
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "Permission",
                     "Role"
                 ]
             }
@@ -2639,7 +2542,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -2667,7 +2570,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -2727,7 +2630,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -2755,7 +2658,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -2815,7 +2718,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -2843,7 +2746,7 @@
                     "200": {
                         "description": "Info on the command that was queued.",
                         "schema": {
-                            "$ref": "#/definitions/command"
+                            "$ref": "#/definitions/CommandInfo"
                         }
                     }
                 },
@@ -3235,6 +3138,9 @@
                         "type": "string",
                         "example": "www.leuven.be"
                     }
+                },
+                "workflowStatus": {
+                    "$ref": "#/definitions/WorkflowStatus"
                 }
             },
             "required": [
@@ -3741,6 +3647,9 @@
                     "items": {
                         "$ref": "#/definitions/Term"
                     }
+                },
+                "workflowStatus": {
+                    "$ref": "#/definitions/WorkflowStatus"
                 }
             },
             "required": [
@@ -3992,17 +3901,6 @@
                 "brand",
                 "title"
             ]
-        },
-        "command": {
-            "required": [
-                "commandId"
-            ],
-            "properties": {
-                "commandId": {
-                    "type": "string",
-                    "example": "8cdc13e62efaecb9d8c21d59a29b9de4"
-                }
-            }
         },
         "commandWithAggregateUuid": {
             "required": [
@@ -5011,7 +4909,8 @@
             "required": [
                 "uuid",
                 "name",
-                "constraint"
+                "constraint",
+                "permissions"
             ],
             "properties": {
                 "uuid": {
@@ -5026,6 +4925,12 @@
                 "constraint": {
                     "type": "string",
                     "example": "city:leuven"
+                },
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Permission"
+                    }
                 }
             }
         },
@@ -5060,7 +4965,17 @@
             "properties": {
                 "key": {
                     "type": "string",
-                    "example": "MANAGE_USERS"
+                    "example": "GEBRUIKERS_BEHEREN",
+                    "enum": [
+                        "AANBOD_INVOEREN",
+                        "AANBOD_BEWERKEN",
+                        "AANBOD_MODEREREN",
+                        "AANBOD_VERWIJDEREN",
+                        "AANBOD_VALIDEREN",
+                        "ORGANISATIES_BEHEREN",
+                        "GEBRUIKERS_BEHEREN",
+                        "LABELS_BEHEREN"
+                    ]
                 },
                 "name": {
                     "type": "string",
@@ -5092,6 +5007,36 @@
                 "totalItems",
                 "member"
             ]
+        },
+        "ModerationCommand": {
+            "properties": {
+                "reason": {
+                    "type": "string",
+                    "example": "voeg afbeelding en prijsinfo toe"
+                }
+            }
+        },
+        "CommandInfo": {
+            "required": [
+                "commandId"
+            ],
+            "properties": {
+                "commandId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "c75003dd-cc77-4424-a186-66aa4abd917f"
+                }
+            }
+        },
+        "WorkflowStatus": {
+            "type": "string",
+            "enum": [
+                "DRAFT",
+                "READY_FOR_VALIDATION",
+                "APPROVED",
+                "REJECTED",
+                "DELETED"
+            ]
         }
     },
     "parameters": {
@@ -5115,7 +5060,17 @@
             "in": "path",
             "description": "Key of a permission",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "enum": [
+                "AANBOD_INVOEREN",
+                "AANBOD_BEWERKEN",
+                "AANBOD_MODEREREN",
+                "AANBOD_VERWIJDEREN",
+                "AANBOD_VALIDEREN",
+                "ORGANISATIES_BEHEREN",
+                "GEBRUIKERS_BEHEREN",
+                "LABELS_BEHEREN"
+            ]
         },
         "userId": {
             "name": "userId",
@@ -5123,6 +5078,14 @@
             "description": "Id of a user",
             "required": true,
             "type": "string"
+        },
+        "cdbid": {
+            "name": "cdbid",
+            "in": "path",
+            "description": "The unique identifier of an offer. The uuid of older items will deviate from the format specification.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
         }
     }
 }
