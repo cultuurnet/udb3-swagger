@@ -86,6 +86,9 @@
                         "schema": {
                             "$ref": "#/definitions/Event"
                         }
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -120,11 +123,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -155,11 +167,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "An event detail.",
-                        "schema": {
-                            "$ref": "#/definitions/Event"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -185,6 +206,12 @@
                         "schema": {
                             "$ref": "#/definitions/EventHistory"
                         }
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -218,6 +245,12 @@
                                 "hasPermission"
                             ]
                         }
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -260,11 +293,17 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -307,11 +346,17 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -341,11 +386,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -399,11 +453,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -469,14 +532,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
                     },
                     "400": {
-                        "description": "Media with id: {id} not found."
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -508,14 +577,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
                     },
                     "400": {
-                        "description": "Media with id: {id} not found."
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -560,11 +635,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -632,11 +716,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "description": "Offer or label not found."
                     }
                 },
                 "tags": [
@@ -760,11 +853,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -791,6 +893,9 @@
                         "schema": {
                             "$ref": "#/definitions/EventList"
                         }
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -826,6 +931,18 @@
                         "schema": {
                             "$ref": "#/definitions/Place"
                         }
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -855,11 +972,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -916,6 +1042,12 @@
                                 "hasPermission"
                             ]
                         }
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -946,14 +1078,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
                     },
                     "400": {
-                        "description": "Media with id: {id} not found."
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -985,14 +1123,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
                     },
                     "400": {
-                        "description": "Media with id: {id} not found."
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -1037,11 +1181,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -1111,11 +1264,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -1145,11 +1307,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -1193,11 +1364,17 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -1240,11 +1417,17 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -1274,19 +1457,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "the command id.",
-                        "schema": {
-                            "properties": {
-                                "commandId": {
-                                    "type": "string",
-                                    "example": "f45d25fba17acd1742b2a89a0058dbc4"
-                                }
-                            },
-                            "required": [
-                                "commandId"
-                            ]
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -1316,19 +1500,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "the command id.",
-                        "schema": {
-                            "properties": {
-                                "commandId": {
-                                    "type": "string",
-                                    "example": "f45d25fba17acd1742b2a89a0058dbc4"
-                                }
-                            },
-                            "required": [
-                                "commandId"
-                            ]
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -1358,19 +1543,20 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "the command id.",
-                        "schema": {
-                            "properties": {
-                                "commandId": {
-                                    "type": "string",
-                                    "example": "f45d25fba17acd1742b2a89a0058dbc4"
-                                }
-                            },
-                            "required": [
-                                "commandId"
-                            ]
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -5086,6 +5272,29 @@
             "required": true,
             "type": "string",
             "format": "uuid"
+        }
+    },
+    "responses": {
+        "CommandQueued": {
+            "description": "Info on the command that was queued.",
+            "schema": {
+                "$ref": "#/definitions/CommandInfo"
+            }
+        },
+        "Unauthorized": {
+            "description": "Authentication with UiTID and a valid JWT is required."
+        },
+        "Forbidden": {
+            "description": "Access is not allowed for the provided authorization."
+        },
+        "APIProblem": {
+            "description": "An API specific problem occurred.",
+            "schema": {
+                "$ref": "#/definitions/APIProblem"
+            }
+        },
+        "UnknownOffer": {
+            "description": "Offer not found."
         }
     }
 }
