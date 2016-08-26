@@ -4965,7 +4965,6 @@
                 "AANBOD_BEWERKEN",
                 "AANBOD_MODEREREN",
                 "AANBOD_VERWIJDEREN",
-                "AANBOD_VALIDEREN",
                 "ORGANISATIES_BEHEREN",
                 "GEBRUIKERS_BEHEREN",
                 "LABELS_BEHEREN"
@@ -5054,7 +5053,6 @@
                 "AANBOD_BEWERKEN",
                 "AANBOD_MODEREREN",
                 "AANBOD_VERWIJDEREN",
-                "AANBOD_VALIDEREN",
                 "ORGANISATIES_BEHEREN",
                 "GEBRUIKERS_BEHEREN",
                 "LABELS_BEHEREN"
