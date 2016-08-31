@@ -34,7 +34,7 @@
                         "description": "An object containing the necessary information to create a new cultural event.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/eventCreationData"
+                            "$ref": "#/definitions/eventMajorInfo"
                         }
                     }
                 ],
@@ -61,6 +61,49 @@
                                 "url"
                             ]
                         }
+                    }
+                },
+                "tags": [
+                    "Event"
+                ]
+            }
+        },
+        "/event/{cdbid}/major-info": {
+            "post": {
+                "summary": "Update the event major info.",
+                "operationId": "updateEventMajorInfo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing major info for an event.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/eventMajorInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -1438,7 +1481,7 @@
         "/place/{cdbid}/major-info": {
             "post": {
                 "summary": "Update the place major info.",
-                "operationId": "updateMajorInfo",
+                "operationId": "updatePlaceMajorInfo",
                 "produces": [
                     "application/json"
                 ],
@@ -4463,7 +4506,7 @@
                 "status"
             ]
         },
-        "eventCreationData": {
+        "eventMajorInfo": {
             "properties": {
                 "name": {
                     "type": "object",
