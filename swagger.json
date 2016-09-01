@@ -5144,30 +5144,17 @@
             }
         },
         "Permission": {
-            "required": [
-                "key",
-                "name"
-            ],
-            "properties": {
-                "key": {
-                    "type": "string",
-                    "example": "GEBRUIKERS_BEHEREN",
-                    "enum": [
-                        "AANBOD_INVOEREN",
-                        "AANBOD_BEWERKEN",
-                        "AANBOD_MODEREREN",
-                        "AANBOD_VERWIJDEREN",
-                        "AANBOD_VALIDEREN",
-                        "ORGANISATIES_BEHEREN",
-                        "GEBRUIKERS_BEHEREN",
-                        "LABELS_BEHEREN"
-                    ]
-                },
-                "name": {
-                    "type": "string",
-                    "example": "Gebruikers beheren"
-                }
-            }
+            "type": "string",
+            "example": "GEBRUIKERS_BEHEREN",
+            "enum": [
+                "AANBOD_INVOEREN",
+                "AANBOD_BEWERKEN",
+                "AANBOD_MODEREREN",
+                "AANBOD_VERWIJDEREN",
+                "ORGANISATIES_BEHEREN",
+                "GEBRUIKERS_BEHEREN",
+                "LABELS_BEHEREN"
+            ]
         },
         "UserSearchResult": {
             "properties": {
@@ -5252,7 +5239,6 @@
                 "AANBOD_BEWERKEN",
                 "AANBOD_MODEREREN",
                 "AANBOD_VERWIJDEREN",
-                "AANBOD_VALIDEREN",
                 "ORGANISATIES_BEHEREN",
                 "GEBRUIKERS_BEHEREN",
                 "LABELS_BEHEREN"
