@@ -3948,7 +3948,7 @@
             "properties": {
                 "label": {
                     "type": "string",
-                    "description": "A label name must be between 3 and 255 chars and cannot contain a semicolon.",
+                    "description": "A label name must have a minimum of 3 characters and a maximum of 255 characters and cannot contain a semicolon.",
                     "example": "Bio",
                     "minLength": 3,
                     "maxLength": 255
@@ -3982,7 +3982,7 @@
                 "label": {
                     "type": "string",
                     "example": "Bio",
-                    "description": "A label name must be between 3 and 255 chars and cannot contain a semicolon.",
+                    "description": "A label name must have a minimum of 3 characters and a maximum of 255 characters and cannot contain a semicolon.",
                     "minLength": 3,
                     "maxLength": 255
                 },
