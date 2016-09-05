@@ -738,6 +738,49 @@
                 ]
             }
         },
+        "/event/{cdbid}/bookingInfo": {
+            "post": {
+                "summary": "Update the event booking info.",
+                "operationId": "updateEventBookingInfo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "The new booking info.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateBookingInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Event"
+                ]
+            }
+        },
         "/query/labels": {
             "post": {
                 "summary": "Add a label to a query",
@@ -1481,7 +1524,7 @@
         "/place/{cdbid}/bookingInfo": {
             "post": {
                 "summary": "Update the place booking info.",
-                "operationId": "updateBookingInfo",
+                "operationId": "updatePlaceBookingInfo",
                 "produces": [
                     "application/json"
                 ],
@@ -1495,7 +1538,7 @@
                         "description": "An object containing bookinginfo for a place.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/postPlaceObjectBookingInfo"
+                            "$ref": "#/definitions/UpdateBookingInfo"
                         }
                     }
                 ],
@@ -4873,7 +4916,7 @@
                 "openingHours"
             ]
         },
-        "postPlaceObjectBookingInfo": {
+        "UpdateBookingInfo": {
             "properties": {
                 "bookingInfo": {
                     "type": "object",
@@ -4895,6 +4938,16 @@
                         "phone": {
                             "type": "string",
                             "example": "0123456789"
+                        },
+                        "availabilityStarts": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2015-05-07T12:02:53+00:00"
+                        },
+                        "availabilityEnds": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2015-05-07T15:02:53+00:00"
                         }
                     }
                 }
