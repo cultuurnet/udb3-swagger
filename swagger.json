@@ -5154,7 +5154,6 @@
             "type": "string",
             "example": "GEBRUIKERS_BEHEREN",
             "enum": [
-                "AANBOD_INVOEREN",
                 "AANBOD_BEWERKEN",
                 "AANBOD_MODEREREN",
                 "AANBOD_VERWIJDEREN",
@@ -5242,7 +5241,6 @@
             "required": true,
             "type": "string",
             "enum": [
-                "AANBOD_INVOEREN",
                 "AANBOD_BEWERKEN",
                 "AANBOD_MODEREREN",
                 "AANBOD_VERWIJDEREN",
