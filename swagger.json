@@ -3816,12 +3816,10 @@
         "Place": {
             "properties": {
                 "description": {
-                    "type": "string",
-                    "example": "Or not to be."
+                    "$ref": "#/definitions/TranslatableString"
                 },
                 "name": {
-                    "type": "string",
-                    "example": "This is the place to be"
+                    "$ref": "#/definitions/TranslatableString"
                 },
                 "address": {
                     "$ref": "#/definitions/Address"
