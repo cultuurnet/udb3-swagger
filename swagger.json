@@ -1575,7 +1575,7 @@
                     {
                         "name": "name",
                         "in": "query",
-                        "description": "The name of the organizer to search",
+                        "description": "The name of the organizer to be used for fuzzy search",
                         "required": false,
                         "type": "string"
                     },
