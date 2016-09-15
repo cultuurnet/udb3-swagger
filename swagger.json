@@ -1687,7 +1687,7 @@
                 ]
             }
         },
-        "/api/1.0/organizer": {
+        "/organizer": {
             "post": {
                 "summary": "Create an organizer.",
                 "operationId": "createOrganizer",
@@ -1698,22 +1698,23 @@
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "An object containing information about Organizer.",
+                        "description": "The command info required to create an organizer.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/OrganizerCreate"
+                            "$ref": "#/definitions/CreateOrganizerWithUniqueWebsiteCommand"
                         }
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "The organizerId and it's url.",
-                        "schema": {
-                            "$ref": "#/definitions/OrganizerId"
-                        }
+                    "201": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
                     }
-
-
                 },
                 "tags": [
                     "Organizer"
@@ -3956,8 +3957,13 @@
                 "name"
             ]
         },
-        "OrganizerCreate": {
+        "CreateOrganizerWithUniqueWebsiteCommand": {
             "properties": {
+                "website": {
+                    "type": "string",
+                    "format": "url",
+                    "example": "http://www.stuk.be/"
+                },
                 "name": {
                     "type": "string",
                     "example": "STUK"
@@ -4014,6 +4020,7 @@
                 }
             },
             "required": [
+                "website",
                 "name"
             ]
         },
@@ -4827,24 +4834,6 @@
                 "itemsPerPage",
                 "totalItems",
                 "member"
-            ]
-        },
-        "OrganizerId": {
-            "properties": {
-                "organizerId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "example": "f8597ef0-9364-4ab5-a3cc-1e344e599fc7"
-                },
-                "url": {
-                    "type": "string",
-                    "format": "url",
-                    "example": "http://culudb-silex.dev:8080/organizer/f8597ef0-9364-4ab5-a3cc-1e344e599fc7"
-                }
-            },
-            "required": [
-                "organizerId",
-                "url"
             ]
         },
         "postPlaceObjectMajorInfo": {
