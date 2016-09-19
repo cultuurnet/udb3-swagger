@@ -2196,7 +2196,8 @@
                                 "email": "info@stuk.be",
                                 "phone": [
                                     "016 320 300"
-                                ]
+                                ],
+                                "url": "http://www.stuk.be/"
                             },
                             "bookingInfo": {
                                 "priceCurrency": "EUR",
@@ -3951,6 +3952,11 @@
                     "type": "string",
                     "format": "date-time",
                     "example": "2015-05-07T12:02:53+00:00"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "url",
+                    "example": "http://www.stuk.be/"
                 }
             },
             "required": [
@@ -4405,7 +4411,8 @@
                                 "email": "info@stuk.be",
                                 "phone": [
                                     "016 320 300"
-                                ]
+                                ],
+                                "url": "http://www.stuk.be/"
                             },
                             "bookingInfo": {
                                 "priceCurrency": "EUR",
