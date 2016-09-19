@@ -3297,7 +3297,7 @@
                     "items": {
                         "type": "string",
                         "format": "phone",
-                        "example": ["0123456789"]
+                        "example": "0123456789"
                     }
                 }
             },
