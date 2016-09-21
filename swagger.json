@@ -1655,6 +1655,52 @@
                 ]
             }
         },
+        "/organizers/": {
+            "get": {
+                "summary": "Search organizers",
+                "operationId": "searchOrganizers",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "The name of the organizer to be used for fuzzy search",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The limit of organizers included in the result set. When omitted it defaults to 30 items.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "The number of organizers to skip from the start of the result set.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of organizers",
+                        "schema": {
+                            "$ref": "#/definitions/OrganizerSearchResults"
+                        }
+                    }
+                },
+                "tags": [
+                    "Search",
+                    "Organizer"
+                ]
+            }
+        },
         "/organizer/{cdbid}": {
             "get": {
                 "summary": "View the details of a specific organizer.",
@@ -1807,7 +1853,8 @@
                     }
                 },
                 "tags": [
-                    "User"
+                    "User",
+                    "Label"
                 ]
             }
         },
@@ -3934,6 +3981,31 @@
                 "address"
             ]
         },
+        "OrganizerSearchResults": {
+            "properties": {
+                "itemsPerPage": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 30
+                },
+                "totalItems": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 3562
+                },
+                "member": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Organizer"
+                    }
+                }
+            },
+            "required": [
+                "itemsPerPage",
+                "totalItems",
+                "member"
+            ]
+        },
         "Organizer": {
             "properties": {
                 "name": {
@@ -3955,6 +4027,20 @@
                         "type": "string",
                         "example": "016 320 300"
                     }
+                },
+                "creator": {
+                    "type": "string",
+                    "example": "evenementen@stad.diksmuide.be"
+                },
+                "created": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2015-05-07T12:02:53+00:00"
+                },
+                "modified": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2015-05-07T12:02:53+00:00"
                 }
             },
             "required": [
@@ -4224,7 +4310,10 @@
             "properties": {
                 "label": {
                     "type": "string",
-                    "example": "Bio"
+                    "description": "A label name must have a minimum of 3 characters and a maximum of 255 characters and cannot contain a semicolon.",
+                    "example": "Bio",
+                    "minLength": 3,
+                    "maxLength": 255
                 }
             }
         },
@@ -4254,7 +4343,10 @@
             "properties": {
                 "label": {
                     "type": "string",
-                    "example": "Bio"
+                    "example": "Bio",
+                    "description": "A label name must have a minimum of 3 characters and a maximum of 255 characters and cannot contain a semicolon.",
+                    "minLength": 3,
+                    "maxLength": 255
                 },
                 "offers": {
                     "type": "array",
@@ -5230,30 +5322,16 @@
             }
         },
         "Permission": {
-            "required": [
-                "key",
-                "name"
-            ],
-            "properties": {
-                "key": {
-                    "type": "string",
-                    "example": "GEBRUIKERS_BEHEREN",
-                    "enum": [
-                        "AANBOD_INVOEREN",
-                        "AANBOD_BEWERKEN",
-                        "AANBOD_MODEREREN",
-                        "AANBOD_VERWIJDEREN",
-                        "AANBOD_VALIDEREN",
-                        "ORGANISATIES_BEHEREN",
-                        "GEBRUIKERS_BEHEREN",
-                        "LABELS_BEHEREN"
-                    ]
-                },
-                "name": {
-                    "type": "string",
-                    "example": "Gebruikers beheren"
-                }
-            }
+            "type": "string",
+            "example": "GEBRUIKERS_BEHEREN",
+            "enum": [
+                "AANBOD_BEWERKEN",
+                "AANBOD_MODEREREN",
+                "AANBOD_VERWIJDEREN",
+                "ORGANISATIES_BEHEREN",
+                "GEBRUIKERS_BEHEREN",
+                "LABELS_BEHEREN"
+            ]
         },
         "UserSearchResult": {
             "properties": {
@@ -5334,11 +5412,9 @@
             "required": true,
             "type": "string",
             "enum": [
-                "AANBOD_INVOEREN",
                 "AANBOD_BEWERKEN",
                 "AANBOD_MODEREREN",
                 "AANBOD_VERWIJDEREN",
-                "AANBOD_VALIDEREN",
                 "ORGANISATIES_BEHEREN",
                 "GEBRUIKERS_BEHEREN",
                 "LABELS_BEHEREN"
