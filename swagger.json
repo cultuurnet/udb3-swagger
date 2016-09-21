@@ -103,6 +103,7 @@
                     "application/ld+json"
                 ],
                 "consumes": [
+                    "application/ld+json;domain-model=Publish",
                     "application/ld+json;domain-model=Approve",
                     "application/ld+json;domain-model=FlagAsDuplicate",
                     "application/ld+json;domain-model=FlagAsInappropriate",
@@ -833,6 +834,7 @@
                     "application/ld+json"
                 ],
                 "consumes": [
+                    "application/ld+json;domain-model=Publish",
                     "application/ld+json;domain-model=Approve",
                     "application/ld+json;domain-model=FlagAsDuplicate",
                     "application/ld+json;domain-model=FlagAsInappropriate",
