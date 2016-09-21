@@ -5039,7 +5039,7 @@
             "required": [
                 "name",
                 "type",
-                "location",
+                "address",
                 "calendarType",
                 "openingHours"
             ]
