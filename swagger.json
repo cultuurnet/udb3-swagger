@@ -3101,6 +3101,31 @@
                 ]
             }
         },
+        "/user/roles/": {
+            "get": {
+                "summary": "Retrieve all the current user's roles.",
+                "description": "Authentication required.",
+                "operationId": "getCurrentUserRoles",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RoleDetail"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "User",
+                    "Role"
+                ]
+            }
+        },
         "/user/permissions/": {
             "get": {
                 "summary": "Retrieve all the current user's permissions",
