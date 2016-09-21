@@ -3115,7 +3115,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/PermissionObject"
+                                "$ref": "#/definitions/Permission"
                             }
                         }
                     }
@@ -5159,21 +5159,6 @@
                 "ORGANISATIES_BEHEREN",
                 "GEBRUIKERS_BEHEREN",
                 "LABELS_BEHEREN"
-            ]
-        },
-        "PermissionObject": {
-            "properties": {
-                "key": {
-                    "$ref": "#/definitions/Permission"
-                },
-                "name": {
-                    "type": "string",
-                    "example": "Gebruikers beheren"
-                }
-            },
-            "required": [
-                "name",
-                "key"
             ]
         },
         "UserSearchResult": {
