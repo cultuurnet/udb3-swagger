@@ -844,6 +844,54 @@
                 ]
             }
         },
+        "/place": {
+            "post": {
+                "summary": "Create a new place.",
+                "operationId": "createPlace",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the necessary information to create a new place.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/postPlaceObjectMajorInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the created place.",
+                        "schema": {
+                            "properties": {
+                                "placeId": {
+                                    "type": "string",
+                                    "format": "uuid",
+                                    "description": "The unique identifier of the place.",
+                                    "example": "0823f57e-a6bd-450a-b4f5-8459b4b11043"
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "format": "url",
+                                    "description": "The URL of the place.",
+                                    "example": "http://culudb-silex.dev:8080/place/0823f57e-a6bd-450a-b4f5-8459b4b11043"
+                                }
+                            },
+                            "required": [
+                                "placeId",
+                                "url"
+                            ]
+                        }
+                    }
+                },
+                "tags": [
+                    "Place"
+                ]
+            }
+        },
         "/place/{cdbid}": {
             "get": {
                 "summary": "View the details of a specific place.",
@@ -4828,32 +4876,27 @@
                         }
                     }
                 },
-                "location": {
+                "address": {
                     "type": "object",
                     "properties": {
-                        "address": {
-                            "type": "object",
-                            "properties": {
-                                "addressCountry": {
-                                    "type": "string",
-                                    "example": "BE",
-                                    "format": "ISO 3166-1 alpha-2"
-                                },
-                                "addressLocality": {
-                                    "type": "string",
-                                    "example": "Leuven"
-                                },
-                                "postalCode": {
-                                    "type": "string",
-                                    "format": "postal code",
-                                    "example": "3000"
-                                },
-                                "streetAddress": {
-                                    "type": "string",
-                                    "example": "Teststraat 5",
-                                    "format": "street name and number"
-                                }
-                            }
+                        "addressCountry": {
+                            "type": "string",
+                            "example": "BE",
+                            "format": "ISO 3166-1 alpha-2"
+                        },
+                        "addressLocality": {
+                            "type": "string",
+                            "example": "Leuven"
+                        },
+                        "postalCode": {
+                            "type": "string",
+                            "format": "postal code",
+                            "example": "3000"
+                        },
+                        "streetAddress": {
+                            "type": "string",
+                            "example": "Teststraat 5",
+                            "format": "street name and number"
                         }
                     }
                 },
