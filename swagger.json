@@ -446,9 +446,11 @@
                         "in": "body",
                         "description": "An array containing price info objects for an event.",
                         "required": true,
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/PriceInfo"
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PriceInfo"
+                            }
                         }
                     }
                 ],
@@ -1624,9 +1626,11 @@
                         "in": "body",
                         "description": "An array containing price info objects for a place.",
                         "required": true,
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/PriceInfo"
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PriceInfo"
+                            }
                         }
                     }
                 ],
