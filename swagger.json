@@ -430,6 +430,50 @@
                 ]
             }
         },
+        "/event/{cdbid}/priceInfo": {
+            "put": {
+                "summary": "Update the event price info.",
+                "operationId": "updateEventPriceInfo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An array containing price info objects for an event.",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/PriceInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Event"
+                ]
+            }
+        },
         "/event/{cdbid}/labels": {
             "post": {
                 "summary": "Add a label to a single cultural event.",
@@ -1539,6 +1583,50 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/postPlaceObjectContactPoint"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Place"
+                ]
+            }
+        },
+        "/place/{cdbid}/priceInfo": {
+            "put": {
+                "summary": "Update the place price info.",
+                "operationId": "updatePlacePriceInfo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An array containing price info objects for a place.",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/PriceInfo"
                         }
                     }
                 ],
@@ -3304,6 +3392,12 @@
                 "bookingInfo": {
                     "$ref": "#/definitions/BookingInfo"
                 },
+                "priceInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PriceInfo"
+                    }
+                },
                 "terms": {
                     "type": "array",
                     "items": {
@@ -3875,6 +3969,12 @@
                 "bookingInfo": {
                     "$ref": "#/definitions/BookingInfo"
                 },
+                "priceInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PriceInfo"
+                    }
+                },
                 "terms": {
                     "type": "array",
                     "items": {
@@ -4041,6 +4141,36 @@
                 "price",
                 "priceCurrency",
                 "description"
+            ]
+        },
+        "PriceInfo": {
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "enum": [
+                        "base",
+                        "tariff"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Senioren"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 10.0
+                },
+                "priceCurrency": {
+                    "type": "string",
+                    "example": "EUR"
+                }
+            },
+            "required": [
+                "category",
+                "name",
+                "price",
+                "priceCurrency"
             ]
         },
         "SavedSearch": {
