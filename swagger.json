@@ -103,6 +103,7 @@
                     "application/ld+json"
                 ],
                 "consumes": [
+                    "application/ld+json;domain-model=Publish",
                     "application/ld+json;domain-model=Approve",
                     "application/ld+json;domain-model=FlagAsDuplicate",
                     "application/ld+json;domain-model=FlagAsInappropriate",
@@ -423,6 +424,52 @@
                         "schema": {
                             "$ref": "#/definitions/CommandInfo"
                         }
+                    }
+                },
+                "tags": [
+                    "Event"
+                ]
+            }
+        },
+        "/event/{cdbid}/priceInfo": {
+            "put": {
+                "summary": "Update the event price info.",
+                "operationId": "updateEventPriceInfo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An array containing price info objects for an event.",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PriceInfo"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -876,6 +923,7 @@
                     "application/ld+json"
                 ],
                 "consumes": [
+                    "application/ld+json;domain-model=Publish",
                     "application/ld+json;domain-model=Approve",
                     "application/ld+json;domain-model=FlagAsDuplicate",
                     "application/ld+json;domain-model=FlagAsInappropriate",
@@ -1604,6 +1652,98 @@
                 },
                 "tags": [
                     "Place"
+                ]
+            }
+        },
+        "/place/{cdbid}/priceInfo": {
+            "put": {
+                "summary": "Update the place price info.",
+                "operationId": "updatePlacePriceInfo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An array containing price info objects for a place.",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PriceInfo"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Place"
+                ]
+            }
+        },
+        "/organizers/": {
+            "get": {
+                "summary": "Search organizers",
+                "operationId": "searchOrganizers",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "The name of the organizer to be used for fuzzy search",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The limit of organizers included in the result set. When omitted it defaults to 30 items.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "The number of organizers to skip from the start of the result set.",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of organizers",
+                        "schema": {
+                            "$ref": "#/definitions/OrganizerSearchResults"
+                        }
+                    }
+                },
+                "tags": [
+                    "Search",
+                    "Organizer"
                 ]
             }
         },
@@ -3144,6 +3284,31 @@
                 ]
             }
         },
+        "/user/roles/": {
+            "get": {
+                "summary": "Retrieve all the current user's roles.",
+                "description": "Authentication required.",
+                "operationId": "getCurrentUserRoles",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RoleDetail"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "User",
+                    "Role"
+                ]
+            }
+        },
         "/user/permissions/": {
             "get": {
                 "summary": "Retrieve all the current user's permissions",
@@ -3300,6 +3465,12 @@
                 },
                 "bookingInfo": {
                     "$ref": "#/definitions/BookingInfo"
+                },
+                "priceInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PriceInfo"
+                    }
                 },
                 "terms": {
                     "type": "array",
@@ -3859,18 +4030,22 @@
         "Place": {
             "properties": {
                 "description": {
-                    "type": "string",
-                    "example": "Or not to be."
+                    "$ref": "#/definitions/TranslatableString"
                 },
                 "name": {
-                    "type": "string",
-                    "example": "This is the place to be"
+                    "$ref": "#/definitions/TranslatableString"
                 },
                 "address": {
                     "$ref": "#/definitions/Address"
                 },
                 "bookingInfo": {
                     "$ref": "#/definitions/BookingInfo"
+                },
+                "priceInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PriceInfo"
+                    }
                 },
                 "terms": {
                     "type": "array",
@@ -3885,6 +4060,31 @@
             "required": [
                 "name",
                 "address"
+            ]
+        },
+        "OrganizerSearchResults": {
+            "properties": {
+                "itemsPerPage": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 30
+                },
+                "totalItems": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 3562
+                },
+                "member": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Organizer"
+                    }
+                }
+            },
+            "required": [
+                "itemsPerPage",
+                "totalItems",
+                "member"
             ]
         },
         "Organizer": {
@@ -3908,6 +4108,20 @@
                         "type": "string",
                         "example": "016 320 300"
                     }
+                },
+                "creator": {
+                    "type": "string",
+                    "example": "evenementen@stad.diksmuide.be"
+                },
+                "created": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2015-05-07T12:02:53+00:00"
+                },
+                "modified": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2015-05-07T12:02:53+00:00"
                 }
             },
             "required": [
@@ -3999,6 +4213,36 @@
                 "price",
                 "priceCurrency",
                 "description"
+            ]
+        },
+        "PriceInfo": {
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "enum": [
+                        "base",
+                        "tariff"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Senioren"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 10.0
+                },
+                "priceCurrency": {
+                    "type": "string",
+                    "example": "EUR"
+                }
+            },
+            "required": [
+                "category",
+                "name",
+                "price",
+                "priceCurrency"
             ]
         },
         "SavedSearch": {
@@ -5207,7 +5451,6 @@
             "type": "string",
             "example": "GEBRUIKERS_BEHEREN",
             "enum": [
-                "AANBOD_INVOEREN",
                 "AANBOD_BEWERKEN",
                 "AANBOD_MODEREREN",
                 "AANBOD_VERWIJDEREN",
@@ -5295,7 +5538,6 @@
             "required": true,
             "type": "string",
             "enum": [
-                "AANBOD_INVOEREN",
                 "AANBOD_BEWERKEN",
                 "AANBOD_MODEREREN",
                 "AANBOD_VERWIJDEREN",
