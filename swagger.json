@@ -1752,8 +1752,8 @@
                 ]
             }
         },
-        "/organizers/{cdbid}/labels": {
-            "post": {
+        "/organizers/{cdbid}/labels/{labelIdentifier}": {
+            "put": {
                 "summary": "Add a label to a single organizer.",
                 "description": "Authentication is required.",
                 "operationId": "addLabelToOrganizer",
@@ -1765,13 +1765,7 @@
                         "$ref": "#/parameters/cdbid"
                     },
                     {
-                        "name": "body",
-                        "in": "body",
-                        "description": "An object containing the label to attach to the organizer.",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/labelCommand"
-                        }
+                        "$ref": "#/parameters/labelIdentifier"
                     }
                 ],
                 "responses": {
@@ -1789,7 +1783,8 @@
                     }
                 },
                 "tags": [
-                    "Organizer"
+                    "Organizer",
+                    "Label"
                 ]
             }
         },
