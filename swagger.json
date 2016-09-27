@@ -828,6 +828,49 @@
                 ]
             }
         },
+        "/event/{cdbid}/contactPoint": {
+            "post": {
+                "summary": "Update the contact point of an event.",
+                "operationId": "updateEventContactPoint",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the contact point for an event.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/postPlaceObjectContactPoint"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Event"
+                ]
+            }
+        },
         "/query/labels": {
             "post": {
                 "summary": "Add a label to a query",
@@ -1615,7 +1658,7 @@
         "/place/{cdbid}/contactPoint": {
             "post": {
                 "summary": "Update the place contact point.",
-                "operationId": "updateContactPoint",
+                "operationId": "updatePlaceContactPoint",
                 "produces": [
                     "application/json"
                 ],
