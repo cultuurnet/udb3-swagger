@@ -1752,6 +1752,47 @@
                 ]
             }
         },
+        "/organizers/{cdbid}/labels": {
+            "post": {
+                "summary": "Add a label to a single organizer.",
+                "description": "Authentication is required.",
+                "operationId": "addLabelToOrganizer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the label to attach to the organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/labelCommand"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer"
+                ]
+            }
+        },
         "/api/1.0/organizer/suggest/{term}": {
             "get": {
                 "summary": "Get the list of organizers which contain {term} in their title.",
