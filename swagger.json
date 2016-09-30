@@ -1786,6 +1786,40 @@
                     "Organizer",
                     "Label"
                 ]
+            },
+            "delete": {
+                "summary": "Delete a label from a single organizer.",
+                "description": "Authentication is required.",
+                "operationId": "deleteLabelFromOrganizer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "$ref": "#/parameters/labelIdentifier"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "Label"
+                ]
             }
         },
         "/api/1.0/organizer/suggest/{term}": {
