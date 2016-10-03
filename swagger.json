@@ -1752,7 +1752,7 @@
                 ]
             }
         },
-        "/organizers/{cdbid}/labels/{labelIdentifier}": {
+        "/organizers/{cdbid}/labels/{labelUuid}": {
             "put": {
                 "summary": "Add a label to a single organizer.",
                 "description": "Authentication is required.",
@@ -1765,7 +1765,7 @@
                         "$ref": "#/parameters/cdbid"
                     },
                     {
-                        "$ref": "#/parameters/labelIdentifier"
+                        "$ref": "#/parameters/labelUuid"
                     }
                 ],
                 "responses": {
@@ -1799,7 +1799,7 @@
                         "$ref": "#/parameters/cdbid"
                     },
                     {
-                        "$ref": "#/parameters/labelIdentifier"
+                        "$ref": "#/parameters/labelUuid"
                     }
                 ],
                 "responses": {
@@ -5539,6 +5539,14 @@
             "description": "The unique name or uuid that identifies a label.",
             "required": true,
             "type": "string"
+        },
+        "labelUuid": {
+            "name": "labelUuid",
+            "in": "path",
+            "description": "The uuid that identifies a label.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
         },
         "roleId": {
             "name": "roleId",
