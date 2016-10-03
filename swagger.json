@@ -1752,7 +1752,7 @@
                 ]
             }
         },
-        "/organizers/{cdbid}/labels/{labelIdentifier}": {
+        "/organizers/{cdbid}/labels/{labelUuid}": {
             "put": {
                 "summary": "Add a label to a single organizer.",
                 "description": "Authentication is required.",
@@ -1765,7 +1765,7 @@
                         "$ref": "#/parameters/cdbid"
                     },
                     {
-                        "$ref": "#/parameters/labelIdentifier"
+                        "$ref": "#/parameters/labelUuid"
                     }
                 ],
                 "responses": {
@@ -1799,7 +1799,7 @@
                         "$ref": "#/parameters/cdbid"
                     },
                     {
-                        "$ref": "#/parameters/labelIdentifier"
+                        "$ref": "#/parameters/labelUuid"
                     }
                 ],
                 "responses": {
@@ -4149,6 +4149,23 @@
                     "type": "string",
                     "format": "date-time",
                     "example": "2015-05-07T12:02:53+00:00"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "uuid": {
+                                "type": "string",
+                                "format": "uuid",
+                                "example": "80f63f49-5de2-42ea-9642-59fc0400f2c5"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Mijn label"
+                            }
+                        }
+                    }
                 }
             },
             "required": [
@@ -5539,6 +5556,14 @@
             "description": "The unique name or uuid that identifies a label.",
             "required": true,
             "type": "string"
+        },
+        "labelUuid": {
+            "name": "labelUuid",
+            "in": "path",
+            "description": "The uuid that identifies a label.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
         },
         "roleId": {
             "name": "roleId",
