@@ -1610,7 +1610,7 @@
                 ]
             }
         },
-        "/organizer/{cdbid}": {
+        "/organizers/{cdbid}": {
             "get": {
                 "summary": "View the details of a specific organizer.",
                 "operationId": "getOrganizer",
@@ -1658,7 +1658,7 @@
                 ]
             }
         },
-        "/organizer/suggest/{term}": {
+        "/organizers/suggest/{term}": {
             "get": {
                 "summary": "Get the list of organizers which contain {term} in their title.",
                 "operationId": "findByPartOfTitle",
@@ -1687,7 +1687,7 @@
                 ]
             }
         },
-        "/organizer": {
+        "/organizers/": {
             "post": {
                 "summary": "Create an organizer.",
                 "operationId": "createOrganizer",
