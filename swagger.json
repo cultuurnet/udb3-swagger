@@ -450,7 +450,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/PriceInfo"
+                                "$ref": "#/definitions/PriceInfoWithoutCurrency"
                             }
                         }
                     }
@@ -1631,7 +1631,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/PriceInfo"
+                                "$ref": "#/definitions/PriceInfoWithoutCurrency"
                             }
                         }
                     }
@@ -4287,6 +4287,31 @@
                 "name",
                 "price",
                 "priceCurrency"
+            ]
+        },
+        "PriceInfoWithoutCurrency": {
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "enum": [
+                        "base",
+                        "tariff"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Senioren"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 10.0
+                }
+            },
+            "required": [
+                "category",
+                "name",
+                "price"
             ]
         },
         "SavedSearch": {
