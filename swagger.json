@@ -1658,7 +1658,7 @@
                 ]
             }
         },
-        "/api/1.0/organizer/suggest/{term}": {
+        "/organizer/suggest/{term}": {
             "get": {
                 "summary": "Get the list of organizers which contain {term} in their title.",
                 "operationId": "findByPartOfTitle",
