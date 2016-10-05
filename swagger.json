@@ -1580,6 +1580,14 @@
                         "type": "string"
                     },
                     {
+                        "name": "website",
+                        "in": "query",
+                        "description": "The url of the organizer website",
+                        "required": false,
+                        "type": "string",
+                        "format": "url"
+                    },
+                    {
                         "name": "limit",
                         "in": "query",
                         "description": "The limit of organizers included in the result set. When omitted it defaults to 30 items.",
@@ -1606,6 +1614,38 @@
                 },
                 "tags": [
                     "Search",
+                    "Organizer"
+                ]
+            },
+            "post": {
+                "summary": "Create an organizer.",
+                "operationId": "createOrganizer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "The command info required to create an organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateOrganizerWithUniqueWebsiteCommand"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
                     "Organizer"
                 ]
             }
@@ -1680,40 +1720,6 @@
                         "schema": {
                             "$ref": "#/definitions/ListOfOrganizers"
                         }
-                    }
-                },
-                "tags": [
-                    "Organizer"
-                ]
-            }
-        },
-        "/organizers/": {
-            "post": {
-                "summary": "Create an organizer.",
-                "operationId": "createOrganizer",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "The command info required to create an organizer.",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/CreateOrganizerWithUniqueWebsiteCommand"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "$ref": "#/responses/CommandQueued"
-                    },
-                    "401": {
-                        "$ref": "#/responses/Unauthorized"
-                    },
-                    "400": {
-                        "$ref": "#/responses/APIProblem"
                     }
                 },
                 "tags": [
