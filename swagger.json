@@ -1674,6 +1674,14 @@
                         "type": "string"
                     },
                     {
+                        "name": "website",
+                        "in": "query",
+                        "description": "The url of the organizer website",
+                        "required": false,
+                        "type": "string",
+                        "format": "url"
+                    },
+                    {
                         "name": "limit",
                         "in": "query",
                         "description": "The limit of organizers included in the result set. When omitted it defaults to 30 items.",
@@ -1702,9 +1710,41 @@
                     "Search",
                     "Organizer"
                 ]
+            },
+            "post": {
+                "summary": "Create an organizer.",
+                "operationId": "createOrganizer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "The command info required to create an organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateOrganizerWithUniqueWebsiteCommand"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer"
+                ]
             }
         },
-        "/organizer/{cdbid}": {
+        "/organizers/{cdbid}": {
             "get": {
                 "summary": "View the details of a specific organizer.",
                 "operationId": "getOrganizer",
@@ -1822,7 +1862,7 @@
                 ]
             }
         },
-        "/api/1.0/organizer/suggest/{term}": {
+        "/organizers/suggest/{term}": {
             "get": {
                 "summary": "Get the list of organizers which contain {term} in their title.",
                 "operationId": "findByPartOfTitle",
@@ -1845,39 +1885,6 @@
                             "$ref": "#/definitions/ListOfOrganizers"
                         }
                     }
-                },
-                "tags": [
-                    "Organizer"
-                ]
-            }
-        },
-        "/api/1.0/organizer": {
-            "post": {
-                "summary": "Create an organizer.",
-                "operationId": "createOrganizer",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "An object containing information about Organizer.",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/OrganizerCreate"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "The organizerId and it's url.",
-                        "schema": {
-                            "$ref": "#/definitions/OrganizerId"
-                        }
-                    }
-
-
                 },
                 "tags": [
                     "Organizer"
@@ -2356,10 +2363,19 @@
                                     "postalCode": 3000,
                                     "streetAddress": "Sluisstraat 79"
                                 },
-                                "email": "info@stuk.be",
-                                "phone": [
-                                    "016 320 300"
-                                ]
+                                "contactPoint": {
+                                    "email": [
+                                        "info@stuk.be"
+                                    ],
+                                    "phone": [
+                                        "016 320 300"
+                                    ],
+                                    "url": [
+                                        "https://www.facebook.com/STUKLeuven",
+                                        "https://twitter.com/stukleuven"
+                                    ]
+                                },
+                                "url": "http://www.stuk.be/"
                             },
                             "bookingInfo": {
                                 "priceCurrency": "EUR",
@@ -3452,6 +3468,40 @@
         }
     ],
     "definitions": {
+        "ContactPoint": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "url",
+                        "example": "http://google.be"
+                    }
+                },
+                "email": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "joske@2dotstwice.be"
+                    }
+                },
+                "phone": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "phone",
+                        "example": "0123456789"
+                    }
+                }
+            },
+            "required": [
+                "url",
+                "email",
+                "phone"
+            ]
+        },
         "Event": {
             "properties": {
                 "@id": {
@@ -4123,18 +4173,8 @@
                 "address": {
                     "$ref": "#/definitions/Address"
                 },
-                "email": {
-                    "type": "string",
-                    "format": "email",
-                    "description": "An email address.",
-                    "example": "info@stuk.be"
-                },
-                "phone": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "example": "016 320 300"
-                    }
+                "contactPoint": {
+                    "$ref": "#/definitions/ContactPoint"
                 },
                 "creator": {
                     "type": "string",
@@ -4149,6 +4189,11 @@
                     "type": "string",
                     "format": "date-time",
                     "example": "2015-05-07T12:02:53+00:00"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "url",
+                    "example": "http://www.stuk.be/"
                 },
                 "labels": {
                     "type": "array",
@@ -4172,8 +4217,13 @@
                 "name"
             ]
         },
-        "OrganizerCreate": {
+        "CreateOrganizerWithUniqueWebsiteCommand": {
             "properties": {
+                "website": {
+                    "type": "string",
+                    "format": "url",
+                    "example": "http://www.stuk.be/"
+                },
                 "name": {
                     "type": "string",
                     "example": "STUK"
@@ -4223,13 +4273,14 @@
                             },
                             "value": {
                                 "type": "string",
-                                "example": "http://www.stuk.be"
+                                "example": "https://www.facebook.com/STUKLeuven"
                             }
                         }
                     }
                 }
             },
             "required": [
+                "website",
                 "name"
             ]
         },
@@ -4641,10 +4692,21 @@
                                     "postalCode": 3000,
                                     "streetAddress": "Sluisstraat 79"
                                 },
-                                "email": "info@stuk.be",
-                                "phone": [
-                                    "016 320 300"
-                                ]
+                                "contactPoint": {
+                                    "email": [
+                                        "info@stuk.be",
+                                        "dirk@stuk.be"
+                                    ],
+                                    "phone": [
+                                        "016 320 300",
+                                        "0489 12 83 09"
+                                    ],
+                                    "url": [
+                                        "https://www.facebook.com/STUKLeuven/",
+                                        "https://twitter.com/stukleuven"
+                                    ]
+                                },
+                                "url": "http://www.stuk.be/"
                             },
                             "bookingInfo": {
                                 "priceCurrency": "EUR",
@@ -5075,24 +5137,6 @@
                 "member"
             ]
         },
-        "OrganizerId": {
-            "properties": {
-                "organizerId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "example": "f8597ef0-9364-4ab5-a3cc-1e344e599fc7"
-                },
-                "url": {
-                    "type": "string",
-                    "format": "url",
-                    "example": "http://culudb-silex.dev:8080/organizer/f8597ef0-9364-4ab5-a3cc-1e344e599fc7"
-                }
-            },
-            "required": [
-                "organizerId",
-                "url"
-            ]
-        },
         "postPlaceObjectMajorInfo": {
             "properties": {
                 "name": {
@@ -5237,38 +5281,7 @@
         "postPlaceObjectContactPoint": {
             "properties": {
                 "contactPoint": {
-                    "type": "object",
-                    "properties": {
-                        "url": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "format": "url",
-                                "example": "http://google.be"
-                            }
-                        },
-                        "email": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "format": "email",
-                                "example": "joske@2dotstwice.be"
-                            }
-                        },
-                        "phone": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "format": "phone",
-                                "example": ["0123456789"]
-                            }
-                        }
-                    },
-                    "required": [
-                        "url",
-                        "email",
-                        "phone"
-                    ]
+                    "$ref": "#/definitions/ContactPoint"
                 }
             },
             "required": [
