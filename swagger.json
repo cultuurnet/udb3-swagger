@@ -103,6 +103,7 @@
                     "application/ld+json"
                 ],
                 "consumes": [
+                    "application/ld+json;domain-model=Publish",
                     "application/ld+json;domain-model=Approve",
                     "application/ld+json;domain-model=FlagAsDuplicate",
                     "application/ld+json;domain-model=FlagAsInappropriate",
@@ -423,6 +424,52 @@
                         "schema": {
                             "$ref": "#/definitions/CommandInfo"
                         }
+                    }
+                },
+                "tags": [
+                    "Event"
+                ]
+            }
+        },
+        "/event/{cdbid}/priceInfo": {
+            "put": {
+                "summary": "Update the event price info.",
+                "operationId": "updateEventPriceInfo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An array containing price info objects for an event.",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PriceInfo"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -833,6 +880,7 @@
                     "application/ld+json"
                 ],
                 "consumes": [
+                    "application/ld+json;domain-model=Publish",
                     "application/ld+json;domain-model=Approve",
                     "application/ld+json;domain-model=FlagAsDuplicate",
                     "application/ld+json;domain-model=FlagAsInappropriate",
@@ -1564,6 +1612,52 @@
                 ]
             }
         },
+        "/place/{cdbid}/priceInfo": {
+            "put": {
+                "summary": "Update the place price info.",
+                "operationId": "updatePlacePriceInfo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An array containing price info objects for a place.",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PriceInfo"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Place"
+                ]
+            }
+        },
         "/organizers/": {
             "get": {
                 "summary": "Search organizers",
@@ -1695,6 +1789,76 @@
                 },
                 "tags": [
                     "Organizer"
+                ]
+            }
+        },
+        "/organizers/{cdbid}/labels/{labelUuid}": {
+            "put": {
+                "summary": "Add a label to a single organizer.",
+                "description": "Authentication is required.",
+                "operationId": "addLabelToOrganizer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "$ref": "#/parameters/labelUuid"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "Label"
+                ]
+            },
+            "delete": {
+                "summary": "Delete a label from a single organizer.",
+                "description": "Authentication is required.",
+                "operationId": "deleteLabelFromOrganizer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "$ref": "#/parameters/labelUuid"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "Label"
                 ]
             }
         },
@@ -3163,6 +3327,31 @@
                 ]
             }
         },
+        "/user/roles/": {
+            "get": {
+                "summary": "Retrieve all the current user's roles.",
+                "description": "Authentication required.",
+                "operationId": "getCurrentUserRoles",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RoleDetail"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "User",
+                    "Role"
+                ]
+            }
+        },
         "/user/permissions/": {
             "get": {
                 "summary": "Retrieve all the current user's permissions",
@@ -3353,6 +3542,12 @@
                 },
                 "bookingInfo": {
                     "$ref": "#/definitions/BookingInfo"
+                },
+                "priceInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PriceInfo"
+                    }
                 },
                 "terms": {
                     "type": "array",
@@ -3912,18 +4107,22 @@
         "Place": {
             "properties": {
                 "description": {
-                    "type": "string",
-                    "example": "Or not to be."
+                    "$ref": "#/definitions/TranslatableString"
                 },
                 "name": {
-                    "type": "string",
-                    "example": "This is the place to be"
+                    "$ref": "#/definitions/TranslatableString"
                 },
                 "address": {
                     "$ref": "#/definitions/Address"
                 },
                 "bookingInfo": {
                     "$ref": "#/definitions/BookingInfo"
+                },
+                "priceInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PriceInfo"
+                    }
                 },
                 "terms": {
                     "type": "array",
@@ -3995,6 +4194,23 @@
                     "type": "string",
                     "format": "url",
                     "example": "http://www.stuk.be/"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "uuid": {
+                                "type": "string",
+                                "format": "uuid",
+                                "example": "80f63f49-5de2-42ea-9642-59fc0400f2c5"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Mijn label"
+                            }
+                        }
+                    }
                 }
             },
             "required": [
@@ -4092,6 +4308,36 @@
                 "price",
                 "priceCurrency",
                 "description"
+            ]
+        },
+        "PriceInfo": {
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "enum": [
+                        "base",
+                        "tariff"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Senioren"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 10.0
+                },
+                "priceCurrency": {
+                    "type": "string",
+                    "example": "EUR"
+                }
+            },
+            "required": [
+                "category",
+                "name",
+                "price",
+                "priceCurrency"
             ]
         },
         "SavedSearch": {
@@ -5323,6 +5569,14 @@
             "description": "The unique name or uuid that identifies a label.",
             "required": true,
             "type": "string"
+        },
+        "labelUuid": {
+            "name": "labelUuid",
+            "in": "path",
+            "description": "The uuid that identifies a label.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
         },
         "roleId": {
             "name": "roleId",
