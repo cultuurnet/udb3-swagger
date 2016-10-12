@@ -1862,35 +1862,6 @@
                 ]
             }
         },
-        "/organizers/suggest/{term}": {
-            "get": {
-                "summary": "Get the list of organizers which contain {term} in their title.",
-                "operationId": "findByPartOfTitle",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "term",
-                        "in": "path",
-                        "description": "The term which will be or be part of the title of the organizer.",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "The list of organizers whose title contains {term}.",
-                        "schema": {
-                            "$ref": "#/definitions/ListOfOrganizers"
-                        }
-                    }
-                },
-                "tags": [
-                    "Organizer"
-                ]
-            }
-        },
         "/user": {
             "get": {
                 "summary": "Retrieve all information about the current user.",
@@ -5135,31 +5106,6 @@
             "required": [
                 "description",
                 "copyrightHolder"
-            ]
-        },
-        "ListOfOrganizers": {
-            "properties": {
-                "itemsPerPage": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 30
-                },
-                "totalItems": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 3562
-                },
-                "member": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Organizer"
-                    }
-                }
-            },
-            "required": [
-                "itemsPerPage",
-                "totalItems",
-                "member"
             ]
         },
         "postPlaceObjectMajorInfo": {
