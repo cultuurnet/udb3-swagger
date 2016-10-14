@@ -20,7 +20,7 @@
         "application/xml"
     ],
     "paths": {
-        "/api/1.0/event": {
+        "/event": {
             "post": {
                 "summary": "Create a new cultural event.",
                 "operationId": "createEvent",
@@ -34,7 +34,7 @@
                         "description": "An object containing the necessary information to create a new cultural event.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/eventCreationData"
+                            "$ref": "#/definitions/eventMajorInfo"
                         }
                     }
                 ],
@@ -61,6 +61,49 @@
                                 "url"
                             ]
                         }
+                    }
+                },
+                "tags": [
+                    "Event"
+                ]
+            }
+        },
+        "/event/{cdbid}/major-info": {
+            "post": {
+                "summary": "Update the event major info.",
+                "operationId": "updateEventMajorInfo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing major info for an event.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/eventMajorInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -848,6 +891,54 @@
                 ]
             }
         },
+        "/place": {
+            "post": {
+                "summary": "Create a new place.",
+                "operationId": "createPlace",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the necessary information to create a new place.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/postPlaceObjectMajorInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the created place.",
+                        "schema": {
+                            "properties": {
+                                "placeId": {
+                                    "type": "string",
+                                    "format": "uuid",
+                                    "description": "The unique identifier of the place.",
+                                    "example": "0823f57e-a6bd-450a-b4f5-8459b4b11043"
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "format": "url",
+                                    "description": "The URL of the place.",
+                                    "example": "http://culudb-silex.dev:8080/place/0823f57e-a6bd-450a-b4f5-8459b4b11043"
+                                }
+                            },
+                            "required": [
+                                "placeId",
+                                "url"
+                            ]
+                        }
+                    }
+                },
+                "tags": [
+                    "Place"
+                ]
+            }
+        },
         "/place/{cdbid}": {
             "get": {
                 "summary": "View the details of a specific place.",
@@ -1486,7 +1577,7 @@
         "/place/{cdbid}/major-info": {
             "post": {
                 "summary": "Update the place major info.",
-                "operationId": "updateMajorInfo",
+                "operationId": "updatePlaceMajorInfo",
                 "produces": [
                     "application/json"
                 ],
@@ -4859,7 +4950,7 @@
                 "status"
             ]
         },
-        "eventCreationData": {
+        "eventMajorInfo": {
             "properties": {
                 "name": {
                     "type": "object",
@@ -5138,32 +5229,27 @@
                         }
                     }
                 },
-                "location": {
+                "address": {
                     "type": "object",
                     "properties": {
-                        "address": {
-                            "type": "object",
-                            "properties": {
-                                "addressCountry": {
-                                    "type": "string",
-                                    "example": "BE",
-                                    "format": "ISO 3166-1 alpha-2"
-                                },
-                                "addressLocality": {
-                                    "type": "string",
-                                    "example": "Leuven"
-                                },
-                                "postalCode": {
-                                    "type": "string",
-                                    "format": "postal code",
-                                    "example": "3000"
-                                },
-                                "streetAddress": {
-                                    "type": "string",
-                                    "example": "Teststraat 5",
-                                    "format": "street name and number"
-                                }
-                            }
+                        "addressCountry": {
+                            "type": "string",
+                            "example": "BE",
+                            "format": "ISO 3166-1 alpha-2"
+                        },
+                        "addressLocality": {
+                            "type": "string",
+                            "example": "Leuven"
+                        },
+                        "postalCode": {
+                            "type": "string",
+                            "format": "postal code",
+                            "example": "3000"
+                        },
+                        "streetAddress": {
+                            "type": "string",
+                            "example": "Teststraat 5",
+                            "format": "street name and number"
                         }
                     }
                 },
@@ -5214,7 +5300,7 @@
             "required": [
                 "name",
                 "type",
-                "location",
+                "address",
                 "calendarType",
                 "openingHours"
             ]
