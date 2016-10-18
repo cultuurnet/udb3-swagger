@@ -4291,34 +4291,7 @@
                     "example": "STUK"
                 },
                 "address": {
-                    "properties": {
-                        "country": {
-                            "type": "string",
-                            "description": "The country code of the location.",
-                            "example": "BE"
-                        },
-                        "locality": {
-                            "type": "string",
-                            "description": "The locality name of the location.",
-                            "example": "Leuven"
-                        },
-                        "postalCode": {
-                            "type": "string",
-                            "description": "The postalcode of the location.",
-                            "example": 3000
-                        },
-                        "streetAddress": {
-                            "type": "string",
-                            "description": "The street name and number information of the location.",
-                            "example": "Sluisstraat 79"
-                        }
-                    },
-                    "required": [
-                        "country",
-                        "locality",
-                        "postalCode",
-                        "streetAddress"
-                    ]
+                    "$ref": "#/definitions/Address"
                 },
                 "contact": {
                     "type": "array",
