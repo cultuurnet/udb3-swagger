@@ -1953,35 +1953,6 @@
                 ]
             }
         },
-        "/organizers/suggest/{term}": {
-            "get": {
-                "summary": "Get the list of organizers which contain {term} in their title.",
-                "operationId": "findByPartOfTitle",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "term",
-                        "in": "path",
-                        "description": "The term which will be or be part of the title of the organizer.",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "The list of organizers whose title contains {term}.",
-                        "schema": {
-                            "$ref": "#/definitions/ListOfOrganizers"
-                        }
-                    }
-                },
-                "tags": [
-                    "Organizer"
-                ]
-            }
-        },
         "/uitpas/organizers/{cdbid}/cardsystems/": {
             "get": {
                 "summary": "Retrieve all cardsystems available to an organisation.",
@@ -4496,34 +4467,7 @@
                     "example": "STUK"
                 },
                 "address": {
-                    "properties": {
-                        "country": {
-                            "type": "string",
-                            "description": "The country code of the location.",
-                            "example": "BE"
-                        },
-                        "locality": {
-                            "type": "string",
-                            "description": "The locality name of the location.",
-                            "example": "Leuven"
-                        },
-                        "postalCode": {
-                            "type": "string",
-                            "description": "The postalcode of the location.",
-                            "example": 3000
-                        },
-                        "streetAddress": {
-                            "type": "string",
-                            "description": "The street name and number information of the location.",
-                            "example": "Sluisstraat 79"
-                        }
-                    },
-                    "required": [
-                        "country",
-                        "locality",
-                        "postalCode",
-                        "streetAddress"
-                    ]
+                    "$ref": "#/definitions/Address"
                 },
                 "contact": {
                     "type": "array",
@@ -5402,31 +5346,6 @@
             "required": [
                 "description",
                 "copyrightHolder"
-            ]
-        },
-        "ListOfOrganizers": {
-            "properties": {
-                "itemsPerPage": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 30
-                },
-                "totalItems": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 3562
-                },
-                "member": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Organizer"
-                    }
-                }
-            },
-            "required": [
-                "itemsPerPage",
-                "totalItems",
-                "member"
             ]
         },
         "postPlaceObjectMajorInfo": {
