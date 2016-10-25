@@ -1982,7 +1982,7 @@
                 ]
             }
         },
-        "/organizers/{cdbid}/cardsystems/": {
+        "/uitpas/organizers/{cdbid}/cardsystems/": {
             "get": {
                 "summary": "Retrieve all cardsystems available to an organisation.",
                 "description": "Authentication is required.",
@@ -2038,6 +2038,118 @@
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "organizer",
+                    "UiTPAS"
+                ]
+            }
+        },
+        "/uitpas/offer/{cdbid}": {
+            "patch": {
+                "summary": "Patch an UiTPAS offer",
+                "description": "Authentication is required.",
+                "operationId": "patchUitpasOffer",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/ld+json;domain-model=SelectCardsystem"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PatchUitpasOfferCommand"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/CommandInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "There is an error in the request.",
+                        "schema": {
+                            "$ref": "#/definitions/APIProblem"
+                        }
+                    },
+                    "404": {
+                        "description": "The offer with the specified identifier was not found."
+                    },
+                    "403": {
+                        "description": "The user is not allowed to patch this offer."
+                    }
+                },
+                "tags": [
+                    "organizer",
+                    "UiTPAS"
+                ]
+            }
+        },
+        "/uitpas/offer/{cdbid}/cardsystem": {
+            "get": {
+                "summary": "Get the current cardsystem and the active distribution key for an UiTPAS offer",
+                "description": "Authentication is required.",
+                "operationId": "getUitpasOfferCardsystem",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The current cardsystem and active distibution key for the UiTPAS offer",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "example": 1
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "UiTPAS Regio Aalst"
+                                },
+                                "activeDistributionKey": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "format": "int32",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "CC De Werf - 1,5 EUR / dag"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "There is an error in the request.",
+                        "schema": {
+                            "$ref": "#/definitions/APIProblem"
+                        }
+                    },
+                    "404": {
+                        "description": "The offer with the specified identifier was not found."
                     }
                 },
                 "tags": [
@@ -5513,6 +5625,22 @@
                         "MakePrivate",
                         "MakePublic"
                     ]
+                }
+            }
+        },
+        "PatchUitpasOfferCommand": {
+            "properties": {
+                "cardsystemId": {
+                    "type": "string",
+                    "format": "number",
+                    "example": "3",
+                    "description": "The id of the cardsystem you want to set for the offer."
+                },
+                "distributionKeyId": {
+                    "type": "string",
+                    "format": "number",
+                    "example": "7",
+                    "description": "The id of the distribution key to use for the cardsystem."
                 }
             }
         },
