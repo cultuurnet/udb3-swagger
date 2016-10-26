@@ -5743,7 +5743,7 @@
         },
         "UiTPASEventCardSystem": {
             "properties": {
-                "cardsystemId": {
+                "cardSystemId": {
                     "type": "string",
                     "format": "number",
                     "example": "3",
