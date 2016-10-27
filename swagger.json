@@ -1989,9 +1989,9 @@
                                             "type": "object",
                                             "properties": {
                                                 "id": {
-                                                    "type": "integer",
-                                                    "format": "int32",
-                                                    "example": 1
+                                                    "type": "string",
+                                                    "format": "number",
+                                                    "example": "1"
                                                 },
                                                 "name": {
                                                     "type": "string",
@@ -2021,11 +2021,11 @@
                 ]
             }
         },
-        "/uitpas/event/{cdbid}/cardsystem": {
+        "/uitpas/event/{cdbid}/distributionKeys": {
             "get": {
-                "summary": "Get the current cardsystem and the active distribution key for an UiTPAS event",
+                "summary": "Get the active distribution keys for an UiTPAS event",
                 "description": "Authentication is required.",
-                "operationId": "getUitpasEventCardsystem",
+                "operationId": "getUiTPASDistributionKeys",
                 "produces": [
                     "application/json"
                 ],
@@ -2036,9 +2036,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "The current cardsystem and active distibution key for the UiTPAS event",
+                        "description": "The active distibution keys for the UiTPAS event",
                         "schema": {
-                            "$ref": "#/definitions/UiTPASEventCardSystem"
+                            "$ref": "#/definitions/UiTPASDistributionKeys"
                         }
                     },
                     "400": {
@@ -2048,7 +2048,7 @@
                         }
                     },
                     "404": {
-                        "description": "No cardsystem info was found for the given UiTPAS event."
+                        "description": "No key info was found for the given UiTPAS event."
                     }
                 },
                 "tags": [
@@ -2057,7 +2057,7 @@
                 ]
             },
             "put": {
-                "summary": "Update an UiTPAS event's cardsystem and distribution key",
+                "summary": "Update an UiTPAS event's distribution keys",
                 "description": "Authentication is required.",
                 "operationId": "updateUiTPasEvent",
                 "produces": [
@@ -2073,7 +2073,7 @@
                         "description": "",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/UiTPASEventCardSystem"
+                            "$ref": "#/definitions/UiTPASDistributionKeys"
                         }
                     }
                 ],
@@ -2094,7 +2094,7 @@
                         "description": "The offer with the specified identifier was not found."
                     },
                     "403": {
-                        "description": "The user is not allowed to patch this UiTPAS event."
+                        "description": "The user is not allowed to edit this UiTPAS event."
                     }
                 },
                 "tags": [
@@ -5741,20 +5741,13 @@
                 "DELETED"
             ]
         },
-        "UiTPASEventCardSystem": {
-            "properties": {
-                "cardSystemId": {
-                    "type": "string",
-                    "format": "number",
-                    "example": "3",
-                    "description": "The id of the cardsystem you want to set for the offer."
-                },
-                "distributionKeyId": {
-                    "type": "string",
-                    "format": "number",
-                    "example": "7",
-                    "description": "The id of the distribution key to use for the cardsystem."
-                }
+        "UiTPASDistributionKeys": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "format": "number",
+                "example": "7",
+                "description": "The id of the distribution key to use for the cardsystem."
             }
         }
     },
