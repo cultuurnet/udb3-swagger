@@ -232,6 +232,48 @@
                 ]
             }
         },
+        "/event/{cdbid}/organizer/{organisationId}": {
+            "delete": {
+                "summary": "Remove the current organisation from an event.",
+                "operationId": "removeEventOrganisation",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "organisationId",
+                        "in": "path",
+                        "description": "Id of the organisation to remove",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Event",
+                    "Organizer"
+                ]
+            }
+        },
         "/event/{cdbid}/history": {
             "get": {
                 "summary": "View the change log / history of a specific cultural event.",
