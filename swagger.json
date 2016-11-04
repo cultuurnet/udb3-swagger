@@ -1995,7 +1995,7 @@
                 ]
             }
         },
-        "/uitpas/organizers/{cdbid}/cardsystems/": {
+        "/uitpas/organizers/{cdbid}/cardSystems/": {
             "get": {
                 "summary": "Retrieve all cardsystems available to an organisation.",
                 "description": "Authentication is required.",
