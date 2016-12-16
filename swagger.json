@@ -20,7 +20,7 @@
         "application/xml"
     ],
     "paths": {
-        "/api/1.0/event": {
+        "/event": {
             "post": {
                 "summary": "Create a new cultural event.",
                 "operationId": "createEvent",
@@ -34,7 +34,7 @@
                         "description": "An object containing the necessary information to create a new cultural event.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/eventCreationData"
+                            "$ref": "#/definitions/eventMajorInfo"
                         }
                     }
                 ],
@@ -61,6 +61,49 @@
                                 "url"
                             ]
                         }
+                    }
+                },
+                "tags": [
+                    "Event"
+                ]
+            }
+        },
+        "/event/{cdbid}/major-info": {
+            "post": {
+                "summary": "Update the event major info.",
+                "operationId": "updateEventMajorInfo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing major info for an event.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/eventMajorInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
                     }
                 },
                 "tags": [
@@ -186,6 +229,48 @@
                 },
                 "tags": [
                     "Event"
+                ]
+            }
+        },
+        "/event/{cdbid}/organizer/{organisationId}": {
+            "delete": {
+                "summary": "Remove the current organisation from an event.",
+                "operationId": "removeEventOrganisation",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "organisationId",
+                        "in": "path",
+                        "description": "Id of the organisation to remove",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Event",
+                    "Organizer"
                 ]
             }
         },
@@ -450,7 +535,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/PriceInfo"
+                                "$ref": "#/definitions/PriceInfoWithoutCurrency"
                             }
                         }
                     }
@@ -926,6 +1011,54 @@
                         "description": "A list of places matching the supplied criteria.",
                         "schema": {
                             "$ref": "#/definitions/PlacesList"
+                        }
+                    }
+                },
+                "tags": [
+                    "Place"
+                ]
+            }
+        },
+        "/place": {
+            "post": {
+                "summary": "Create a new place.",
+                "operationId": "createPlace",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the necessary information to create a new place.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/postPlaceObjectMajorInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the created place.",
+                        "schema": {
+                            "properties": {
+                                "placeId": {
+                                    "type": "string",
+                                    "format": "uuid",
+                                    "description": "The unique identifier of the place.",
+                                    "example": "0823f57e-a6bd-450a-b4f5-8459b4b11043"
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "format": "url",
+                                    "description": "The URL of the place.",
+                                    "example": "http://culudb-silex.dev:8080/place/0823f57e-a6bd-450a-b4f5-8459b4b11043"
+                                }
+                            },
+                            "required": [
+                                "placeId",
+                                "url"
+                            ]
                         }
                     }
                 },
@@ -1571,7 +1704,7 @@
         "/place/{cdbid}/major-info": {
             "post": {
                 "summary": "Update the place major info.",
-                "operationId": "updateMajorInfo",
+                "operationId": "updatePlaceMajorInfo",
                 "produces": [
                     "application/json"
                 ],
@@ -1716,7 +1849,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/PriceInfo"
+                                "$ref": "#/definitions/PriceInfoWithoutCurrency"
                             }
                         }
                     }
@@ -1759,6 +1892,14 @@
                         "type": "string"
                     },
                     {
+                        "name": "website",
+                        "in": "query",
+                        "description": "The url of the organizer website",
+                        "required": false,
+                        "type": "string",
+                        "format": "url"
+                    },
+                    {
                         "name": "limit",
                         "in": "query",
                         "description": "The limit of organizers included in the result set. When omitted it defaults to 30 items.",
@@ -1787,9 +1928,41 @@
                     "Search",
                     "Organizer"
                 ]
+            },
+            "post": {
+                "summary": "Create an organizer.",
+                "operationId": "createOrganizer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "The command info required to create an organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateOrganizerWithUniqueWebsiteCommand"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer"
+                ]
             }
         },
-        "/organizer/{cdbid}": {
+        "/organizers/{cdbid}": {
             "get": {
                 "summary": "View the details of a specific organizer.",
                 "operationId": "getOrganizer",
@@ -1837,65 +2010,223 @@
                 ]
             }
         },
-        "/api/1.0/organizer/suggest/{term}": {
-            "get": {
-                "summary": "Get the list of organizers which contain {term} in their title.",
-                "operationId": "findByPartOfTitle",
+        "/organizers/{cdbid}/labels/{labelName}": {
+            "put": {
+                "summary": "Add a label to a single organizer.",
+                "description": "Authentication is required.",
+                "operationId": "addLabelToOrganizer",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
-                        "name": "term",
-                        "in": "path",
-                        "description": "The term which will be or be part of the title of the organizer.",
-                        "required": true,
-                        "type": "string"
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "$ref": "#/parameters/labelName"
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "The list of organizers whose title contains {term}.",
-                        "schema": {
-                            "$ref": "#/definitions/ListOfOrganizers"
-                        }
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
                     }
                 },
                 "tags": [
-                    "Organizer"
+                    "Organizer",
+                    "Label"
+                ]
+            },
+            "delete": {
+                "summary": "Delete a label from a single organizer.",
+                "description": "Authentication is required.",
+                "operationId": "deleteLabelFromOrganizer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "$ref": "#/parameters/labelName"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "Label"
                 ]
             }
         },
-        "/api/1.0/organizer": {
-            "post": {
-                "summary": "Create an organizer.",
-                "operationId": "createOrganizer",
+        "/uitpas/organizers/{cdbid}/cardsystems/": {
+            "get": {
+                "summary": "Retrieve all cardsystems available to an organisation.",
+                "description": "Authentication is required.",
+                "operationId": "getOrganisationCardsystems",
                 "produces": [
                     "application/json"
                 ],
                 "parameters": [
                     {
-                        "name": "body",
-                        "in": "body",
-                        "description": "An object containing information about Organizer.",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/OrganizerCreate"
-                        }
+                        "$ref": "#/parameters/cdbid"
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "The organizerId and it's url.",
+                        "description": "A list of cardsystems.",
                         "schema": {
-                            "$ref": "#/definitions/OrganizerId"
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "UiTPAS Regio Aalst"
+                                    },
+                                    "distributionKeys": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "format": "number",
+                                                    "example": "1"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "CC De Werf - 1,5 EUR / dag"
+                                                }
+                                            },
+                                            "required": [
+                                                "id",
+                                                "name"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
                         }
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
                     }
-
-
                 },
                 "tags": [
-                    "Organizer"
+                    "Organizer",
+                    "UiTPAS"
+                ]
+            }
+        },
+        "/uitpas/event/{cdbid}/distributionKeys": {
+            "get": {
+                "summary": "Get the active distribution keys for an UiTPAS event",
+                "description": "Authentication is required.",
+                "operationId": "getUiTPASDistributionKeys",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The active distibution keys for the UiTPAS event",
+                        "schema": {
+                            "$ref": "#/definitions/UiTPASDistributionKeys"
+                        }
+                    },
+                    "400": {
+                        "description": "There is an error in the request.",
+                        "schema": {
+                            "$ref": "#/definitions/APIProblem"
+                        }
+                    },
+                    "404": {
+                        "description": "No key info was found for the given UiTPAS event."
+                    }
+                },
+                "tags": [
+                    "Event",
+                    "UiTPAS"
+                ]
+            },
+            "put": {
+                "summary": "Update an UiTPAS event's distribution keys",
+                "description": "Authentication is required.",
+                "operationId": "updateUiTPasEvent",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UiTPASDistributionKeys"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/CommandInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "There is an error in the request.",
+                        "schema": {
+                            "$ref": "#/definitions/APIProblem"
+                        }
+                    },
+                    "404": {
+                        "description": "The offer with the specified identifier was not found."
+                    },
+                    "403": {
+                        "description": "The user is not allowed to edit this UiTPAS event."
+                    }
+                },
+                "tags": [
+                    "Event",
+                    "UiTPAS"
                 ]
             }
         },
@@ -2371,10 +2702,19 @@
                                     "postalCode": 3000,
                                     "streetAddress": "Sluisstraat 79"
                                 },
-                                "email": "info@stuk.be",
-                                "phone": [
-                                    "016 320 300"
-                                ]
+                                "contactPoint": {
+                                    "email": [
+                                        "info@stuk.be"
+                                    ],
+                                    "phone": [
+                                        "016 320 300"
+                                    ],
+                                    "url": [
+                                        "https://www.facebook.com/STUKLeuven",
+                                        "https://twitter.com/stukleuven"
+                                    ]
+                                },
+                                "url": "http://www.stuk.be/"
                             },
                             "bookingInfo": {
                                 "priceCurrency": "EUR",
@@ -3467,6 +3807,40 @@
         }
     ],
     "definitions": {
+        "ContactPoint": {
+            "type": "object",
+            "properties": {
+                "url": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "url",
+                        "example": "http://google.be"
+                    }
+                },
+                "email": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "joske@2dotstwice.be"
+                    }
+                },
+                "phone": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "phone",
+                        "example": "0123456789"
+                    }
+                }
+            },
+            "required": [
+                "url",
+                "email",
+                "phone"
+            ]
+        },
         "Event": {
             "properties": {
                 "@id": {
@@ -4138,18 +4512,8 @@
                 "address": {
                     "$ref": "#/definitions/Address"
                 },
-                "email": {
-                    "type": "string",
-                    "format": "email",
-                    "description": "An email address.",
-                    "example": "info@stuk.be"
-                },
-                "phone": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "example": "016 320 300"
-                    }
+                "contactPoint": {
+                    "$ref": "#/definitions/ContactPoint"
                 },
                 "creator": {
                     "type": "string",
@@ -4164,47 +4528,47 @@
                     "type": "string",
                     "format": "date-time",
                     "example": "2015-05-07T12:02:53+00:00"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "url",
+                    "example": "http://www.stuk.be/"
+                },
+                "labels": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "uuid": {
+                                "type": "string",
+                                "format": "uuid",
+                                "example": "80f63f49-5de2-42ea-9642-59fc0400f2c5"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Mijn label"
+                            }
+                        }
+                    }
                 }
             },
             "required": [
                 "name"
             ]
         },
-        "OrganizerCreate": {
+        "CreateOrganizerWithUniqueWebsiteCommand": {
             "properties": {
+                "website": {
+                    "type": "string",
+                    "format": "url",
+                    "example": "http://www.stuk.be/"
+                },
                 "name": {
                     "type": "string",
                     "example": "STUK"
                 },
                 "address": {
-                    "properties": {
-                        "country": {
-                            "type": "string",
-                            "description": "The country code of the location.",
-                            "example": "BE"
-                        },
-                        "locality": {
-                            "type": "string",
-                            "description": "The locality name of the location.",
-                            "example": "Leuven"
-                        },
-                        "postalCode": {
-                            "type": "string",
-                            "description": "The postalcode of the location.",
-                            "example": 3000
-                        },
-                        "streetAddress": {
-                            "type": "string",
-                            "description": "The street name and number information of the location.",
-                            "example": "Sluisstraat 79"
-                        }
-                    },
-                    "required": [
-                        "country",
-                        "locality",
-                        "postalCode",
-                        "streetAddress"
-                    ]
+                    "$ref": "#/definitions/Address"
                 },
                 "contact": {
                     "type": "array",
@@ -4221,13 +4585,14 @@
                             },
                             "value": {
                                 "type": "string",
-                                "example": "http://www.stuk.be"
+                                "example": "https://www.facebook.com/STUKLeuven"
                             }
                         }
                     }
                 }
             },
             "required": [
+                "website",
                 "name"
             ]
         },
@@ -4285,6 +4650,31 @@
                 "name",
                 "price",
                 "priceCurrency"
+            ]
+        },
+        "PriceInfoWithoutCurrency": {
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "enum": [
+                        "base",
+                        "tariff"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Senioren"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 10.0
+                }
+            },
+            "required": [
+                "category",
+                "name",
+                "price"
             ]
         },
         "SavedSearch": {
@@ -4463,9 +4853,9 @@
             "properties": {
                 "label": {
                     "type": "string",
-                    "description": "A label name must have a minimum of 3 characters and a maximum of 255 characters and cannot contain a semicolon.",
+                    "description": "A label name must have a minimum of 2 characters and a maximum of 255 characters and cannot contain a semicolon.",
                     "example": "Bio",
-                    "minLength": 3,
+                    "minLength": 2,
                     "maxLength": 255
                 }
             }
@@ -4497,8 +4887,8 @@
                 "label": {
                     "type": "string",
                     "example": "Bio",
-                    "description": "A label name must have a minimum of 3 characters and a maximum of 255 characters and cannot contain a semicolon.",
-                    "minLength": 3,
+                    "description": "A label name must have a minimum of 2 characters and a maximum of 255 characters and cannot contain a semicolon.",
+                    "minLength": 2,
                     "maxLength": 255
                 },
                 "offers": {
@@ -4639,10 +5029,21 @@
                                     "postalCode": 3000,
                                     "streetAddress": "Sluisstraat 79"
                                 },
-                                "email": "info@stuk.be",
-                                "phone": [
-                                    "016 320 300"
-                                ]
+                                "contactPoint": {
+                                    "email": [
+                                        "info@stuk.be",
+                                        "dirk@stuk.be"
+                                    ],
+                                    "phone": [
+                                        "016 320 300",
+                                        "0489 12 83 09"
+                                    ],
+                                    "url": [
+                                        "https://www.facebook.com/STUKLeuven/",
+                                        "https://twitter.com/stukleuven"
+                                    ]
+                                },
+                                "url": "http://www.stuk.be/"
                             },
                             "bookingInfo": {
                                 "priceCurrency": "EUR",
@@ -4799,7 +5200,7 @@
                 "status"
             ]
         },
-        "eventCreationData": {
+        "eventMajorInfo": {
             "properties": {
                 "name": {
                     "type": "object",
@@ -5048,49 +5449,6 @@
                 "copyrightHolder"
             ]
         },
-        "ListOfOrganizers": {
-            "properties": {
-                "itemsPerPage": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 30
-                },
-                "totalItems": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 3562
-                },
-                "member": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Organizer"
-                    }
-                }
-            },
-            "required": [
-                "itemsPerPage",
-                "totalItems",
-                "member"
-            ]
-        },
-        "OrganizerId": {
-            "properties": {
-                "organizerId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "example": "f8597ef0-9364-4ab5-a3cc-1e344e599fc7"
-                },
-                "url": {
-                    "type": "string",
-                    "format": "url",
-                    "example": "http://culudb-silex.dev:8080/organizer/f8597ef0-9364-4ab5-a3cc-1e344e599fc7"
-                }
-            },
-            "required": [
-                "organizerId",
-                "url"
-            ]
-        },
         "postPlaceObjectMajorInfo": {
             "properties": {
                 "name": {
@@ -5121,32 +5479,27 @@
                         }
                     }
                 },
-                "location": {
+                "address": {
                     "type": "object",
                     "properties": {
-                        "address": {
-                            "type": "object",
-                            "properties": {
-                                "addressCountry": {
-                                    "type": "string",
-                                    "example": "BE",
-                                    "format": "ISO 3166-1 alpha-2"
-                                },
-                                "addressLocality": {
-                                    "type": "string",
-                                    "example": "Leuven"
-                                },
-                                "postalCode": {
-                                    "type": "string",
-                                    "format": "postal code",
-                                    "example": "3000"
-                                },
-                                "streetAddress": {
-                                    "type": "string",
-                                    "example": "Teststraat 5",
-                                    "format": "street name and number"
-                                }
-                            }
+                        "addressCountry": {
+                            "type": "string",
+                            "example": "BE",
+                            "format": "ISO 3166-1 alpha-2"
+                        },
+                        "addressLocality": {
+                            "type": "string",
+                            "example": "Leuven"
+                        },
+                        "postalCode": {
+                            "type": "string",
+                            "format": "postal code",
+                            "example": "3000"
+                        },
+                        "streetAddress": {
+                            "type": "string",
+                            "example": "Teststraat 5",
+                            "format": "street name and number"
                         }
                     }
                 },
@@ -5197,7 +5550,7 @@
             "required": [
                 "name",
                 "type",
-                "location",
+                "address",
                 "calendarType",
                 "openingHours"
             ]
@@ -5245,38 +5598,7 @@
         "postPlaceObjectContactPoint": {
             "properties": {
                 "contactPoint": {
-                    "type": "object",
-                    "properties": {
-                        "url": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "format": "url",
-                                "example": "http://google.be"
-                            }
-                        },
-                        "email": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "format": "email",
-                                "example": "joske@2dotstwice.be"
-                            }
-                        },
-                        "phone": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "format": "phone",
-                                "example": ["0123456789"]
-                            }
-                        }
-                    },
-                    "required": [
-                        "url",
-                        "email",
-                        "phone"
-                    ]
+                    "$ref": "#/definitions/ContactPoint"
                 }
             },
             "required": [
@@ -5555,6 +5877,15 @@
                 "REJECTED",
                 "DELETED"
             ]
+        },
+        "UiTPASDistributionKeys": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "format": "number",
+                "example": "7",
+                "description": "The id of the distribution key to use for the cardsystem."
+            }
         }
     },
     "parameters": {
@@ -5562,6 +5893,13 @@
             "name": "labelIdentifier",
             "in": "path",
             "description": "The unique name or uuid that identifies a label.",
+            "required": true,
+            "type": "string"
+        },
+        "labelName": {
+            "name": "labelName",
+            "in": "path",
+            "description": "The unique name that identifies a label.",
             "required": true,
             "type": "string"
         },
