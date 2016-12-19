@@ -2166,32 +2166,6 @@
                 ]
             }
         },
-        "/api/1.0/user/labels": {
-            "get": {
-                "summary": "Retrieve labels used recently by the current user.",
-                "description": "Authentication is required.",
-                "operationId": "getRecentlyUsedLabels",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of labels recently used by the current user.",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "example": "Label name"
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "User",
-                    "Label"
-                ]
-            }
-        },
         "/api/1.0/search": {
             "get": {
                 "summary": "Retrieve events for a given search query with a given start and limit.",
