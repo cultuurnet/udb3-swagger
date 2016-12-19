@@ -4800,7 +4800,7 @@
                 },
                 "query": {
                     "type": "string",
-                    "example": "6e169e4a-32c8-4fca-a1ce-5beb2b2ac2cc"
+                    "example": "city:Leuven"
                 }
             },
             "required": [
