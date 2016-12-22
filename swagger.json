@@ -870,6 +870,50 @@
                 ]
             }
         },
+        "/event/{cdbid}/audience": {
+            "put": {
+                "summary": "Set the target audience for an event.",
+                "description": "Authentication is required.",
+                "operationId": "setEventAudience",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the audience information to set for the event.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EventAudienceInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "description": "Offer or label not found."
+                    }
+                },
+                "tags": [
+                    "Event"
+                ]
+            }
+        },
         "/query/labels": {
             "post": {
                 "summary": "Add a label to a query",
@@ -5764,6 +5808,19 @@
                 "format": "number",
                 "example": "7",
                 "description": "The id of the distribution key to use for the cardsystem."
+            }
+        },
+        "EventAudienceInfo": {
+            "properties": {
+                "audienceType": {
+                    "type": "string",
+                    "enum": [
+                        "everyone",
+                        "members",
+                        "education"
+                    ],
+                    "example": "everyone"
+                }
             }
         }
     },
