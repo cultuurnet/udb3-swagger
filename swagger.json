@@ -992,7 +992,7 @@
                         "$ref": "#/responses/APIProblem"
                     },
                     "404": {
-                        "description": "Offer or label not found."
+                        "description": "Event not found."
                     }
                 },
                 "tags": [
