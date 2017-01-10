@@ -68,6 +68,69 @@
                 ]
             }
         },
+        "/event/{cdbid}/copies/": {
+            "post": {
+                "summary": "Make a copy of an event.",
+                "operationId": "copyEvent",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "The data required for the copied event",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/eventCopy"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Details of the created event.",
+                        "schema": {
+                            "properties": {
+                                "eventId": {
+                                    "type": "string",
+                                    "format": "uuid",
+                                    "description": "The unique identifier of the cultural event.",
+                                    "example": "0823f57e-a6bd-450a-b4f5-8459b4b11043"
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "format": "url",
+                                    "description": "The URL of the cultural event.",
+                                    "example": "http://culudb-silex.dev:8080/event/0823f57e-a6bd-450a-b4f5-8459b4b11043"
+                                }
+                            },
+                            "required": [
+                                "eventId",
+                                "url"
+                            ]
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Event"
+                ]
+            }
+        },
         "/event/{cdbid}/major-info": {
             "post": {
                 "summary": "Update the event major info.",
@@ -5384,6 +5447,82 @@
                 "type",
                 "theme",
                 "location",
+                "calendarType",
+                "startDate"
+            ]
+        },
+        "eventCopy": {
+            "properties": {
+                "calendarType": {
+                    "type": "string",
+                    "enum": [
+                        "single",
+                        "multiple",
+                        "periodic",
+                        "permanent"
+                    ]
+                },
+                "openingHours": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "dayOfWeek": {
+                                "type": "string",
+                                "enum": [
+                                    "maandag",
+                                    "dinsdag",
+                                    "woensdag",
+                                    "donderdag",
+                                    "vrijdag",
+                                    "zaterdag",
+                                    "zondag"
+                                ]
+                            },
+                            "opens": {
+                                "type": "string",
+                                "example": "04:20"
+                            },
+                            "closes": {
+                                "type": "string",
+                                "example": "06:66"
+                            }
+                        }
+                    }
+                },
+                "timestamps": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "date": {
+                                "type": "string",
+                                "format": "date",
+                                "example": "2000-12-30"
+                            },
+                            "startHour": {
+                                "type": "string",
+                                "example": "04:20"
+                            },
+                            "endHour": {
+                                "type": "string",
+                                "example": "06:66"
+                            }
+                        }
+                    }
+                },
+                "startDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2015-05-07T12:02:53+00:00"
+                },
+                "endDate": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2015-05-07T12:02:53+00:00"
+                }
+            },
+            "required": [
                 "calendarType",
                 "startDate"
             ]
