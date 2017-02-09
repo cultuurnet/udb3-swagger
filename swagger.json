@@ -4104,6 +4104,20 @@
                 "streetAddress"
             ]
         },
+        "GeoCoordinates": {
+            "properties": {
+                "latitude": {
+                    "type": "string",
+                    "description": "The latitude of the location.",
+                    "example": "40.75"
+                },
+                "longitude": {
+                    "type": "string",
+                    "description": "The longitude of the location.",
+                    "example": "73.98"
+                }
+            }
+        },
         "Term": {
             "properties": {
                 "label": {
@@ -4534,6 +4548,9 @@
                 },
                 "address": {
                     "$ref": "#/definitions/Address"
+                },
+                "geo": {
+                    "$ref": "#/definitions/GeoCoordinates"
                 },
                 "bookingInfo": {
                     "$ref": "#/definitions/BookingInfo"
