@@ -2117,7 +2117,7 @@
                 ]
             }
         },
-        "organizers/{cdbid}/address": {
+        "/organizers/{cdbid}/address": {
             "put": {
                 "summary": "Update the address of a specific organizer",
                 "operationId": "updateAddress",
@@ -2158,7 +2158,7 @@
                 ]
             }
         },
-        "organizers/{cdbid}/contactPoint": {
+        "/organizers/{cdbid}/contactPoint": {
             "put": {
                 "summary": "Update the contact point of a specific organizer",
                 "operationId": "updateContactPoint",
