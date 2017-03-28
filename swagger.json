@@ -2117,6 +2117,88 @@
                 ]
             }
         },
+        "/organizers/{cdbid}/website": {
+            "put": {
+                "summary": "Update the website of a specific organizer",
+                "operationId": "updateWebsite",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the website of an organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Website"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "Website"
+                ]
+            }
+        },
+        "/organizers/{cdbid}/title": {
+            "put": {
+                "summary": "Update the title of a specific organizer",
+                "operationId": "updateTitle",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the title of an organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Title"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "Title"
+                ]
+            }
+        },
         "/organizers/{cdbid}/address": {
             "put": {
                 "summary": "Update the address of a specific organizer",
@@ -4155,6 +4237,25 @@
             "required": [
                 "nl"
             ]
+        },
+        "Title": {
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "The title of an item",
+                    "example": "Het Depot"
+                }
+            }
+        },
+        "Website": {
+            "properties": {
+                "website": {
+                    "type": "string",
+                    "format": "url",
+                    "description": "The website of an item",
+                    "example": "http://www.depot.be"
+                }
+            }
         },
         "Address": {
             "properties": {
