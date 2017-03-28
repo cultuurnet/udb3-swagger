@@ -2117,6 +2117,47 @@
                 ]
             }
         },
+        "organizers/{cdbid}/address": {
+            "put": {
+                "summary": "Update the address of a specific organizer",
+                "operationId": "updateAddress",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the address of an organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Address"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "Address"
+                ]
+            }
+        },
         "organizers/{cdbid}/contactPoint": {
             "put": {
                 "summary": "Update the contact point of a specific organizer",
