@@ -2117,6 +2117,47 @@
                 ]
             }
         },
+        "organizers/{cdbid}/contactPoint": {
+            "put": {
+                "summary": "Update the contact point of a specific organizer",
+                "operationId": "updateContactPoint",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the contact point for an organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ContactPoint"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "ContactPoint"
+                ]
+            }
+        },
         "/organizers/{cdbid}/labels/{labelName}": {
             "put": {
                 "summary": "Add a label to a single organizer.",
