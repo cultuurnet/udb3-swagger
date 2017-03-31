@@ -2117,10 +2117,10 @@
                 ]
             }
         },
-        "/organizers/{cdbid}/website": {
+        "/organizers/{cdbid}/url": {
             "put": {
-                "summary": "Update the website of a specific organizer",
-                "operationId": "updateWebsite",
+                "summary": "Update the unique url of a specific organizer",
+                "operationId": "updateUrl",
                 "produces": [
                     "application/json"
                 ],
@@ -2131,10 +2131,10 @@
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "An object containing the website of an organizer.",
+                        "description": "An object containing the unique url of an organizer.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Website"
+                            "$ref": "#/definitions/Url"
                         }
                     }
                 ],
@@ -2154,14 +2154,14 @@
                 },
                 "tags": [
                     "Organizer",
-                    "Website"
+                    "Url"
                 ]
             }
         },
-        "/organizers/{cdbid}/title": {
+        "/organizers/{cdbid}/name": {
             "put": {
-                "summary": "Update the title of a specific organizer",
-                "operationId": "updateTitle",
+                "summary": "Update the name of a specific organizer",
+                "operationId": "updateName",
                 "produces": [
                     "application/json"
                 ],
@@ -2175,7 +2175,7 @@
                         "description": "An object containing the title of an organizer.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Title"
+                            "$ref": "#/definitions/OrganizerName"
                         }
                     }
                 ],
@@ -2195,7 +2195,7 @@
                 },
                 "tags": [
                     "Organizer",
-                    "Title"
+                    "Name"
                 ]
             }
         },
@@ -4238,21 +4238,21 @@
                 "nl"
             ]
         },
-        "Title": {
+        "OrganizerName": {
             "properties": {
                 "title": {
                     "type": "string",
-                    "description": "The title of an item",
+                    "description": "The name of an organizer",
                     "example": "Het Depot"
                 }
             }
         },
-        "Website": {
+        "Url": {
             "properties": {
                 "website": {
                     "type": "string",
                     "format": "url",
-                    "description": "The website of an item",
+                    "description": "The url of an item",
                     "example": "http://www.depot.be"
                 }
             }
