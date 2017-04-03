@@ -2117,6 +2117,170 @@
                 ]
             }
         },
+        "/organizers/{cdbid}/url": {
+            "put": {
+                "summary": "Update the unique url of a specific organizer",
+                "operationId": "updateUrl",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the unique url of an organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Url"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "Url"
+                ]
+            }
+        },
+        "/organizers/{cdbid}/name": {
+            "put": {
+                "summary": "Update the name of a specific organizer",
+                "operationId": "updateName",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the title of an organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/OrganizerName"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "Name"
+                ]
+            }
+        },
+        "/organizers/{cdbid}/address": {
+            "put": {
+                "summary": "Update the address of a specific organizer",
+                "operationId": "updateAddress",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the address of an organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Address"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "Address"
+                ]
+            }
+        },
+        "/organizers/{cdbid}/contactPoint": {
+            "put": {
+                "summary": "Update the contact point of a specific organizer",
+                "operationId": "updateContactPoint",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the contact point for an organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ContactPoint"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "ContactPoint"
+                ]
+            }
+        },
         "/organizers/{cdbid}/labels/{labelName}": {
             "put": {
                 "summary": "Add a label to a single organizer.",
@@ -4073,6 +4237,25 @@
             "required": [
                 "nl"
             ]
+        },
+        "OrganizerName": {
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "The name of an organizer",
+                    "example": "Het Depot"
+                }
+            }
+        },
+        "Url": {
+            "properties": {
+                "website": {
+                    "type": "string",
+                    "format": "url",
+                    "description": "The url of an item",
+                    "example": "http://www.depot.be"
+                }
+            }
         },
         "Address": {
             "properties": {
