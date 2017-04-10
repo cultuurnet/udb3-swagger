@@ -4240,7 +4240,7 @@
         },
         "OrganizerName": {
             "properties": {
-                "title": {
+                "name": {
                     "type": "string",
                     "description": "The name of an organizer",
                     "example": "Het Depot"
@@ -4249,7 +4249,7 @@
         },
         "Url": {
             "properties": {
-                "website": {
+                "url": {
                     "type": "string",
                     "format": "url",
                     "description": "The url of an item",
