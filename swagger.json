@@ -407,6 +407,45 @@
                 ]
             }
         },
+        "/event/{cdbid}/permission/{userId}": {
+            "get": {
+                "summary": "Whether the given user has permission to update.",
+                "operationId": "givenUserHasEventEditingPermission",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "$ref": "#/parameters/userId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "has permission.",
+                        "schema": {
+                            "properties": {
+                                "hasPermission": {
+                                    "type": "boolean",
+                                    "example": false
+                                }
+                            },
+                            "required": [
+                                "hasPermission"
+                            ]
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Event"
+                ]
+            }
+        },
         "/event/{cdbid}/{lang}/title": {
             "post": {
                 "summary": "Translate the title of a cultural event.",
@@ -1418,6 +1457,45 @@
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Place"
+                ]
+            }
+        },
+        "/place/{cdbid}/permission/{userId}": {
+            "get": {
+                "summary": "Whether the given user has permission to update.",
+                "operationId": "givenUserHasPlaceEditingPermission",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "$ref": "#/parameters/userId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "has permission.",
+                        "schema": {
+                            "properties": {
+                                "hasPermission": {
+                                    "type": "boolean",
+                                    "example": false
+                                }
+                            },
+                            "required": [
+                                "hasPermission"
+                            ]
+                        }
                     },
                     "404": {
                         "$ref": "#/responses/UnknownOffer"
