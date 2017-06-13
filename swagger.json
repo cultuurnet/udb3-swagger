@@ -2239,7 +2239,8 @@
         "/organizers/{cdbid}/name": {
             "put": {
                 "summary": "Update the name of a specific organizer",
-                "operationId": "updateName",
+                "operationId": "updateNameDeprecated",
+                "deprecated": true,
                 "produces": [
                     "application/json"
                 ],
@@ -2250,7 +2251,7 @@
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "An object containing the title of an organizer.",
+                        "description": "An object containing the name of an organizer.",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/OrganizerName"
@@ -2274,6 +2275,51 @@
                 "tags": [
                     "Organizer",
                     "Name"
+                ]
+            }
+        },
+        "/organizers/{cdbid}/name/{lang}": {
+            "put": {
+                "summary": "Update or translate the name of a specific organizer",
+                "operationId": "updateName",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "$ref": "#/parameters/lang"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the name of an organizer.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/OrganizerName"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Organizer",
+                    "Name",
+                    "Translate"
                 ]
             }
         },
@@ -6393,6 +6439,20 @@
             "required": true,
             "type": "string",
             "format": "uuid"
+        },
+        "lang": {
+            "name": "lang",
+            "in": "path",
+            "description": "The unique ISO 639-1 2 character language code.",
+            "required": true,
+            "type": "string",
+            "format": "string",
+            "enum": [
+                "nl",
+                "fr",
+                "en",
+                "du"
+            ]
         }
     },
     "responses": {
