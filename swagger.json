@@ -1929,6 +1929,49 @@
                 ]
             }
         },
+        "/place/{cdbid}/address/{lang}": {
+            "put": {
+                "summary": "Update the address of a specific place",
+                "operationId": "updateAddress",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    },
+                    {
+                        "$ref": "#/parameters/lang"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the address of a place.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Address"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "$ref": "#/responses/CommandQueued"
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    }
+                },
+                "tags": [
+                    "Place"
+                ]
+            }
+        },
         "/place/{cdbid}/bookingInfo": {
             "post": {
                 "summary": "Update the place booking info.",
