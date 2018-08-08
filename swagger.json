@@ -2238,6 +2238,50 @@
                 ]
             }
         },
+        "/organizers/{cdbid}/permissions": {
+            "get": {
+                "summary": "A list of permissions the current user has to an organizer.",
+                "operationId": "getOrganizerPermissions",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of permissions",
+                        "schema": {
+                            "properties": {
+                                "permissions": {
+                                    "type": "array",
+                                    "example": [
+                                        "Organisaties bewerken"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/responses/Forbidden"
+                    },
+                    "400": {
+                        "$ref": "#/responses/APIProblem"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Organizer"
+                ]
+            }
+        },
         "/organizers/{cdbid}/url": {
             "put": {
                 "summary": "Update the unique url of a specific organizer",
