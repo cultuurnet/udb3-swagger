@@ -1148,7 +1148,21 @@
                         "name": "zipcode",
                         "in": "query",
                         "description": "Limit the list to places located in the area with this postal code.",
-                        "required": true,
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "country",
+                        "in": "query",
+                        "description": "Limit the list to places in the given country. This is optional. When no country parameter is provided, default 'BE' will be used.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "city",
+                        "in": "query",
+                        "description": "Limit the list to places located in the area with this city.",
+                        "required": false,
                         "type": "string"
                     }
                 ],
