@@ -3858,6 +3858,104 @@
                 ]
             }
         },
+        "/roles/{roleId}/constraints/{sapiVersion}": {
+            "post": {
+                "summary": "Add a constraint to the role.",
+                "operationId": "addRoleConstraint",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/sapiVersion"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the required constraint for the sapiVersion of a role.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RoleConstraint"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/CommandInfo"
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
+            },
+            "put": {
+                "summary": "Updates a constraint to the role.",
+                "operationId": "updateRoleConstraint",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/sapiVersion"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the required constraint for the sapiVersion of a role.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RoleConstraint"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/CommandInfo"
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
+            },
+            "delete": {
+                "summary": "Removes a constraint to the role.",
+                "operationId": "removeRoleConstraint",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/sapiVersion"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/CommandInfo"
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
+            }
+        },
         "/roles/{roleId}/permissions/{permissionKey}": {
             "put": {
                 "summary": "Add a permission to the role.",
@@ -6509,6 +6607,14 @@
                 }
             }
         },
+        "RoleConstraint": {
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "example": "city:3000"
+                }
+            }
+        },
         "Permission": {
             "type": "string",
             "example": "GEBRUIKERS_BEHEREN",
@@ -6626,6 +6732,17 @@
             "required": true,
             "type": "string",
             "format": "uuid"
+        },
+        "sapiVersion": {
+            "name": "sapiVersion",
+            "in": "path",
+            "description": "Version of the api.",
+            "required": true,
+            "type": "string",
+            "enum": [
+                "v2",
+                "v3"
+            ]
         },
         "permissionKey": {
             "name": "permissionKey",
