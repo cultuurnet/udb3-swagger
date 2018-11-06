@@ -3828,8 +3828,7 @@
                     "application/ld+json"
                 ],
                 "consumes": [
-                    "application/ld+json;domain-model=RenameRole",
-                    "application/ld+json;domain-model=SetConstraint"
+                    "application/ld+json;domain-model=RenameRole"
                 ],
                 "parameters": [
                     {
@@ -3838,7 +3837,7 @@
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "An object containing the required information for the update of the name of a role. The RenameRole model requires a 'name' body parameter, the SetConstraint domain-model requires a 'constraint' body parameter.",
+                        "description": "An object containing the required information for the update of the name of a role. The RenameRole model requires a 'name' body parameter.",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/UpdateRole"
@@ -6609,10 +6608,6 @@
                 "name": {
                     "type": "string",
                     "example": "Beheerder west-vlaanderen"
-                },
-                "constraint": {
-                    "type": "string",
-                    "example": "city:leuven"
                 }
             }
         },
