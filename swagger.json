@@ -5362,6 +5362,13 @@
                     "format": "email",
                     "description": "An email address.",
                     "example": "evenementen@stad.diksmuide.be"
+                },
+                "sapiVersion": {
+                    "type": "string",
+                    "enum": [
+                        "v2",
+                        "v3"
+                    ]
                 }
             }
         },
