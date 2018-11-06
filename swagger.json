@@ -6559,7 +6559,7 @@
             "required": [
                 "uuid",
                 "name",
-                "constraint",
+                "constraints",
                 "permissions"
             ],
             "properties": {
@@ -6572,9 +6572,18 @@
                     "type": "string",
                     "example": "Beheerder west-vlaanderen"
                 },
-                "constraint": {
-                    "type": "string",
-                    "example": "city:leuven"
+                "constraints": {
+                    "type": "object",
+                    "properties": {
+                        "v2": {
+                            "type": "string",
+                            "example": "city:Kortrijk"
+                        },
+                        "v3": {
+                            "type": "string",
+                            "example": "city:3000"
+                        }
+                    }
                 },
                 "permissions": {
                     "type": "array",
