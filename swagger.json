@@ -5321,6 +5321,13 @@
         },
         "postObjectWithNewSavedSearch": {
             "properties": {
+                "sapiVersion": {
+                    "type": "string",
+                    "enum": [
+                        "v2",
+                        "v3"
+                    ]
+                },
                 "name": {
                     "type": "string",
                     "example": "Permanent in Rotselaar"
