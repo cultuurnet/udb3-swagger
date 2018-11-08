@@ -2914,7 +2914,7 @@
                 ]
             }
         },
-        "/saved-searches/": {
+        "/saved-searches/{sapiVersion}": {
             "get": {
                 "summary": "Get a list of saved searches for the current user.",
                 "description": "Authentication is required.",
@@ -2945,6 +2945,17 @@
                     "application/json"
                 ],
                 "parameters": [
+                    {
+                        "name": "sapiVersion",
+                        "in": "path",
+                        "description": "The sapiVersion of the saved search to create.",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "v2",
+                            "v3"
+                        ]
+                    },
                     {
                         "name": "body",
                         "in": "body",
@@ -5332,13 +5343,6 @@
         },
         "postObjectWithNewSavedSearch": {
             "properties": {
-                "sapiVersion": {
-                    "type": "string",
-                    "enum": [
-                        "v2",
-                        "v3"
-                    ]
-                },
                 "name": {
                     "type": "string",
                     "example": "Permanent in Rotselaar"
