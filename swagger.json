@@ -2968,7 +2968,7 @@
                 ]
             }
         },
-        "/saved-searches/{id}": {
+        "/saved-searches/{sapiVersion}/{id}": {
             "delete": {
                 "summary": "Remove a saved search for the current user.",
                 "description": "Authentication is required.",
@@ -2977,6 +2977,17 @@
                     "application/json"
                 ],
                 "parameters": [
+                    {
+                        "name": "sapiVersion",
+                        "in": "path",
+                        "description": "The sapiVersion of the saved search to remove.",
+                        "required": true,
+                        "type": "string",
+                        "enum": [
+                            "v2",
+                            "v3"
+                        ]
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -5338,6 +5349,7 @@
                 }
             },
             "required": [
+                "sapiVersion",
                 "name",
                 "query"
             ]
