@@ -2922,6 +2922,11 @@
                 "produces": [
                     "application/json"
                 ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/sapiVersion"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "A list of saved searches.",
@@ -2946,15 +2951,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "sapiVersion",
-                        "in": "path",
-                        "description": "The sapiVersion of the saved search to create.",
-                        "required": true,
-                        "type": "string",
-                        "enum": [
-                            "v2",
-                            "v3"
-                        ]
+                        "$ref": "#/parameters/sapiVersion"
                     },
                     {
                         "name": "body",
@@ -2989,15 +2986,7 @@
                 ],
                 "parameters": [
                     {
-                        "name": "sapiVersion",
-                        "in": "path",
-                        "description": "The sapiVersion of the saved search to remove.",
-                        "required": true,
-                        "type": "string",
-                        "enum": [
-                            "v2",
-                            "v3"
-                        ]
+                        "$ref": "#/parameters/sapiVersion"
                     },
                     {
                         "name": "id",
@@ -5353,7 +5342,6 @@
                 }
             },
             "required": [
-                "sapiVersion",
                 "name",
                 "query"
             ]
@@ -6692,6 +6680,17 @@
                 "fr",
                 "en",
                 "du"
+            ]
+        },
+        "sapiVersion": {
+            "name": "sapiVersion",
+            "in": "path",
+            "description": "The sapiVersion of the saved search.",
+            "required": true,
+            "type": "string",
+            "enum": [
+                "v2",
+                "v3"
             ]
         }
     },
