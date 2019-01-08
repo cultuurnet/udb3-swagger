@@ -6740,7 +6740,7 @@
         "sapiVersion": {
             "name": "sapiVersion",
             "in": "path",
-            "description": "Version of the api.",
+            "description": "Version of the search api.",
             "required": true,
             "type": "string",
             "enum": [
