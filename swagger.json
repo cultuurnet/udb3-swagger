@@ -3828,8 +3828,7 @@
                     "application/ld+json"
                 ],
                 "consumes": [
-                    "application/ld+json;domain-model=RenameRole",
-                    "application/ld+json;domain-model=SetConstraint"
+                    "application/ld+json;domain-model=RenameRole"
                 ],
                 "parameters": [
                     {
@@ -3838,11 +3837,109 @@
                     {
                         "name": "body",
                         "in": "body",
-                        "description": "An object containing the required information for the update of the name of a role. The RenameRole model requires a 'name' body parameter, the SetConstraint domain-model requires a 'constraint' body parameter.",
+                        "description": "An object containing the required information for the update of the name of a role. The RenameRole model requires a 'name' body parameter.",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/UpdateRole"
                         }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/CommandInfo"
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
+            }
+        },
+        "/roles/{roleId}/constraints/{sapiVersion}": {
+            "post": {
+                "summary": "Add a constraint to the role.",
+                "operationId": "addRoleConstraint",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/sapiVersion"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the required constraint for the sapiVersion of a role.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RoleConstraint"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/CommandInfo"
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
+            },
+            "put": {
+                "summary": "Updates a constraint to the role.",
+                "operationId": "updateRoleConstraint",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/sapiVersion"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "An object containing the required constraint for the sapiVersion of a role.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RoleConstraint"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Info on the command that was queued.",
+                        "schema": {
+                            "$ref": "#/definitions/CommandInfo"
+                        }
+                    }
+                },
+                "tags": [
+                    "Role"
+                ]
+            },
+            "delete": {
+                "summary": "Removes a constraint to the role.",
+                "operationId": "removeRoleConstraint",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/roleId"
+                    },
+                    {
+                        "$ref": "#/parameters/sapiVersion"
                     }
                 ],
                 "responses": {
@@ -6468,7 +6565,7 @@
             "required": [
                 "uuid",
                 "name",
-                "constraint",
+                "constraints",
                 "permissions"
             ],
             "properties": {
@@ -6481,9 +6578,18 @@
                     "type": "string",
                     "example": "Beheerder west-vlaanderen"
                 },
-                "constraint": {
-                    "type": "string",
-                    "example": "city:leuven"
+                "constraints": {
+                    "type": "object",
+                    "properties": {
+                        "v2": {
+                            "type": "string",
+                            "example": "city:Kortrijk"
+                        },
+                        "v3": {
+                            "type": "string",
+                            "example": "city:3000"
+                        }
+                    }
                 },
                 "permissions": {
                     "type": "array",
@@ -6509,10 +6615,14 @@
                 "name": {
                     "type": "string",
                     "example": "Beheerder west-vlaanderen"
-                },
-                "constraint": {
+                }
+            }
+        },
+        "RoleConstraint": {
+            "properties": {
+                "query": {
                     "type": "string",
-                    "example": "city:leuven"
+                    "example": "city:3000"
                 }
             }
         },
@@ -6633,6 +6743,17 @@
             "required": true,
             "type": "string",
             "format": "uuid"
+        },
+        "sapiVersion": {
+            "name": "sapiVersion",
+            "in": "path",
+            "description": "Version of the search api.",
+            "required": true,
+            "type": "string",
+            "enum": [
+                "v2",
+                "v3"
+            ]
         },
         "permissionKey": {
             "name": "permissionKey",
