@@ -5485,7 +5485,7 @@
                     }
                 },
                 "customizations": {
-                    "$ref": "#/definitions/exportCustomizations"
+                    "$ref": "#/definitions/exportPdfCustomizations"
                 },
                 "email": {
                     "type": "string",
@@ -5525,6 +5525,43 @@
                 "title": {
                     "type": "string",
                     "example": "Organic in Mechelen"
+                }
+            },
+            "required": [
+                "brand",
+                "title"
+            ]
+        },
+        "exportPdfCustomizations": {
+            "properties": {
+                "brand": {
+                    "type": "string",
+                    "enum": [
+                        "uit",
+                        "uitpas",
+                        "vlieg",
+                        "paspartoe"
+                    ]
+                },
+                "footer": {
+                    "type": "string",
+                    "example": "Organic for the win"
+                },
+                "publisher": {
+                    "type": "string",
+                    "example": "MechelenOrganic"
+                },
+                "subtitle": {
+                    "type": "string",
+                    "example": "Delicious & healthy food in Mechelen"
+                },
+                "title": {
+                    "type": "string",
+                    "example": "Organic in Mechelen"
+                },
+                "onMap": {
+                    "type": "boolean",
+                    "example": false
                 }
             },
             "required": [
