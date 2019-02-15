@@ -6809,17 +6809,6 @@
                 "en",
                 "du"
             ]
-        },
-        "sapiVersion": {
-            "name": "sapiVersion",
-            "in": "path",
-            "description": "The sapiVersion of the saved search.",
-            "required": true,
-            "type": "string",
-            "enum": [
-                "v2",
-                "v3"
-            ]
         }
     },
     "responses": {
