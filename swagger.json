@@ -2914,13 +2914,18 @@
                 ]
             }
         },
-        "/saved-searches/": {
+        "/saved-searches/{sapiVersion}": {
             "get": {
                 "summary": "Get a list of saved searches for the current user.",
                 "description": "Authentication is required.",
                 "operationId": "getSavedSearchs",
                 "produces": [
                     "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/sapiVersion"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -2946,6 +2951,9 @@
                 ],
                 "parameters": [
                     {
+                        "$ref": "#/parameters/sapiVersion"
+                    },
+                    {
                         "name": "body",
                         "in": "body",
                         "description": "An object containing the the required information to create a new saved search.",
@@ -2968,7 +2976,7 @@
                 ]
             }
         },
-        "/saved-searches/{id}": {
+        "/saved-searches/{sapiVersion}/{id}": {
             "delete": {
                 "summary": "Remove a saved search for the current user.",
                 "description": "Authentication is required.",
@@ -2977,6 +2985,9 @@
                     "application/json"
                 ],
                 "parameters": [
+                    {
+                        "$ref": "#/parameters/sapiVersion"
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -6797,6 +6808,17 @@
                 "fr",
                 "en",
                 "du"
+            ]
+        },
+        "sapiVersion": {
+            "name": "sapiVersion",
+            "in": "path",
+            "description": "The sapiVersion of the saved search.",
+            "required": true,
+            "type": "string",
+            "enum": [
+                "v2",
+                "v3"
             ]
         }
     },
