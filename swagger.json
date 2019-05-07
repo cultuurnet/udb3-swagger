@@ -5536,6 +5536,13 @@
                 "title": {
                     "type": "string",
                     "example": "Organic in Mechelen"
+                },
+                "template": {
+                    "type": "string",
+                    "enum": [
+                        "tips",
+                        "map"
+                    ]
                 }
             },
             "required": [
