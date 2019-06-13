@@ -4377,37 +4377,6 @@
                     "Role"
                 ]
             }
-        },
-        "/dashboard/items/": {
-            "get": {
-                "summary": "Retrieve all items on the user's dashboard",
-                "description": "Authentication required",
-                "operationId": "getDashboardItems",
-                "produces": [
-                    "application/ld+json"
-                ],
-                "parameters": [
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "The number of the page which the paged result should return",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int32"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of dashboard items",
-                        "schema": {
-                            "$ref": "#/definitions/DashboardItems"
-                        }
-                    }
-                },
-                "tags": [
-                    "Dashboard"
-                ]
-            }
         }
     },
     "tags": [
@@ -4462,10 +4431,6 @@
         {
             "name": "Permission",
             "description": "Operations related to permissions."
-        },
-        {
-            "name": "Dashboard",
-            "description": "Operations related to dashboard."
         }
     ],
     "definitions": {
@@ -5805,41 +5770,6 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/Place"
-                    }
-                }
-            },
-            "required": [
-                "itemsPerPage",
-                "totalItems",
-                "member"
-            ]
-        },
-        "DashboardItems": {
-            "properties": {
-                "itemsPerPage": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 30
-                },
-                "totalItems": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 1
-                },
-                "member": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "id": {
-                                "type": "string",
-                                "example": "http://udb-silex.dev/event/7616a359-b95c-48c0-9981-502732b8d957"
-                            },
-                            "type": {
-                                "type": "string",
-                                "example": "Event"
-                            }
-                        }
                     }
                 }
             },
