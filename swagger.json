@@ -1135,36 +1135,6 @@
                 ]
             }
         },
-        "/places": {
-            "get": {
-                "summary": "List places.",
-                "description": "",
-                "operationId": "listPlaces",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "zipcode",
-                        "in": "query",
-                        "description": "Limit the list to places located in the area with this postal code.",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of places matching the supplied criteria.",
-                        "schema": {
-                            "$ref": "#/definitions/PlacesList"
-                        }
-                    }
-                },
-                "tags": [
-                    "Place"
-                ]
-            }
-        },
         "/place": {
             "post": {
                 "summary": "Create a new place.",
@@ -5891,23 +5861,6 @@
             },
             "required": [
                 "events"
-            ]
-        },
-        "PlacesList": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/PagedCollection"
-                },
-                {
-                    "properties": {
-                        "member": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Place"
-                            }
-                        }
-                    }
-                }
             ]
         },
         "APIProblem": {
