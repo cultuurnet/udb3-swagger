@@ -39,7 +39,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "Details of the created event.",
                         "schema": {
                             "properties": {
@@ -90,7 +90,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "Details of the created event.",
                         "schema": {
                             "properties": {
@@ -153,8 +153,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -230,8 +230,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -274,8 +274,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -315,8 +315,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -481,8 +481,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -534,8 +534,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -574,8 +574,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -643,8 +643,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -687,8 +687,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -729,7 +729,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "202": {
                         "description": "Info on the command that was queued.",
                         "schema": {
                             "$ref": "#/definitions/CommandInfo"
@@ -766,8 +766,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -811,8 +811,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -869,8 +869,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -916,11 +916,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -950,8 +947,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -994,8 +991,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1037,8 +1034,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1081,8 +1078,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -1122,11 +1119,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -1154,7 +1148,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "Details of the created place.",
                         "schema": {
                             "properties": {
@@ -1197,7 +1191,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "An event detail.",
+                        "description": "A place detail.",
                         "schema": {
                             "$ref": "#/definitions/Place"
                         }
@@ -1236,8 +1230,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1308,11 +1302,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "An event detail.",
-                        "schema": {
-                            "$ref": "#/definitions/Place"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1354,8 +1345,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1499,8 +1490,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1544,8 +1535,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1602,8 +1593,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1649,11 +1640,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -1685,8 +1673,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1728,8 +1716,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1785,8 +1773,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1838,8 +1826,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1878,8 +1866,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -1924,8 +1912,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -1964,8 +1952,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -2007,8 +1995,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -2053,8 +2041,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "$ref": "#/responses/APIProblem"
@@ -2146,7 +2134,7 @@
                 ],
                 "responses": {
                     "201": {
-                        "$ref": "#/responses/CommandQueued"
+                        "description": "The organizers was created successfully."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -2196,11 +2184,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -2274,8 +2259,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -2316,8 +2301,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -2360,8 +2345,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -2402,8 +2387,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -2493,21 +2478,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "required": [
-                                "commandId"
-                            ],
-                            "properties": {
-                                "commandId": {
-                                    "type": "string",
-                                    "format": "uuid",
-                                    "description": "A universally unique identifier.",
-                                    "example": "6f072ba8-c510-40ac-b387-51f582650e27"
-                                }
-                            }
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "description": "An API specific problem occurred.",
@@ -2571,8 +2543,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -2607,8 +2579,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -2641,8 +2613,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "$ref": "#/responses/CommandQueued"
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "401": {
                         "$ref": "#/responses/Unauthorized"
@@ -2785,11 +2757,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "description": "There is an error in the request.",
@@ -2828,59 +2797,6 @@
                 },
                 "tags": [
                     "User"
-                ]
-            }
-        },
-        "/api/1.0/search": {
-            "get": {
-                "summary": "Retrieve events for a given search query with a given start and limit.",
-                "description": "Authentication is required.",
-                "operationId": "apiSearch",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "query",
-                        "in": "query",
-                        "description": "The search query to execute.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "The limit of events included in the result set. When omitted it defaults to 30 items.",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    {
-                        "name": "start",
-                        "in": "query",
-                        "description": "The number of events to skip from the start of the result set.",
-                        "required": false,
-                        "type": "integer",
-                        "format": "int32"
-                    },
-                    {
-                        "name": "sort",
-                        "in": "query",
-                        "description": "How to order the search results.\n\nSpecify a field and an optional direction (asc or desc) separated by a space. A list of sortable fields is available at: https://docs.google.com/spreadsheets/d/1Y0DPDrPXNx45ePCo7N2fGknFO9AQDuf_m7dK_PpYBzM. The default order is 'lastupdated desc'.",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "A list of events",
-                        "schema": {
-                            "$ref": "#/definitions/SearchResult"
-                        }
-                    }
-                },
-                "tags": [
-                    "Search"
                 ]
             }
         },
@@ -2934,11 +2850,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -2967,11 +2880,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -2999,11 +2909,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -3032,7 +2939,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "202": {
                         "description": "Info on the command that was queued.",
                         "schema": {
                             "$ref": "#/definitions/CommandInfo"
@@ -3065,7 +2972,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "202": {
                         "description": "Info on the command that was queued.",
                         "schema": {
                             "$ref": "#/definitions/CommandInfo"
@@ -3098,7 +3005,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "202": {
                         "description": "Info on the command that was queued.",
                         "schema": {
                             "$ref": "#/definitions/CommandInfo"
@@ -3131,11 +3038,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "description": "There is an error in the request.",
@@ -3341,11 +3245,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "410": {
                         "description": "The variation is no longer available, because it was removed."
@@ -3388,11 +3289,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "description": "There is an error in the request.",
@@ -3450,11 +3348,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     },
                     "400": {
                         "description": "There is an error in the request.",
@@ -3546,11 +3441,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/commandWithAggregateUuid"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -3578,11 +3470,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/commandWithAggregateUuid"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -3654,11 +3543,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/commandWithAggregateUuid"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -3731,7 +3617,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "Details of the created role.",
                         "schema": {
                             "properties": {
@@ -3791,11 +3677,8 @@
                     }
                 ],
                 "responses": {
-                    "202": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -3826,11 +3709,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -3863,11 +3743,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -3898,11 +3775,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -3924,11 +3798,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -3953,11 +3824,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -3981,11 +3849,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -4041,11 +3906,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -4069,11 +3931,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -4129,11 +3988,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
@@ -4157,11 +4013,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Info on the command that was queued.",
-                        "schema": {
-                            "$ref": "#/definitions/CommandInfo"
-                        }
+                    "204": {
+                        "description": "Action successfully executed."
                     }
                 },
                 "tags": [
