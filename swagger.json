@@ -4591,6 +4591,18 @@
                     "format": "email",
                     "description": "Email address of the author.",
                     "example": "johndoe@example.com"
+                },
+                "apiKey": {
+                    "type": "string",
+                    "example": "6b76978c-e9f9-403d-b1df-2dba52e6e029"
+                },
+                "api": {
+                    "type": "string",
+                    "example": "JSON-LD Imports API"
+                },
+                "consumerName": {
+                    "type": "string",
+                    "example": "Herita"
                 }
             },
             "required": [
