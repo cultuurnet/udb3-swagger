@@ -2062,6 +2062,37 @@
                 ]
             }
         },
+        "/place/{cdbid}/history": {
+            "get": {
+                "summary": "View the change log / history of a specific place.",
+                "operationId": "getPlaceHistory",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The place history.",
+                        "schema": {
+                            "$ref": "#/definitions/PlaceHistory"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/Unauthorized"
+                    },
+                    "404": {
+                        "$ref": "#/responses/UnknownOffer"
+                    }
+                },
+                "tags": [
+                    "Place"
+                ]
+            }
+        },
         "/organizers/": {
             "get": {
                 "summary": "Search organizers",
@@ -4576,6 +4607,35 @@
             }
         },
         "EventHistoryLog": {
+            "properties": {
+                "date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2015-05-07T12:02:53+00:00"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "Aangemaakt in UDB2"
+                },
+                "author": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email address of the author.",
+                    "example": "johndoe@example.com"
+                }
+            },
+            "required": [
+                "date",
+                "description"
+            ]
+        },
+        "PlaceHistory": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/PlaceHistoryLog"
+            }
+        },
+        "PlaceHistoryLog": {
             "properties": {
                 "date": {
                     "type": "string",
