@@ -3991,7 +3991,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/UserIdentity"
+                                "$ref": "#/definitions/User"
                             }
                         }
                     }
@@ -4143,7 +4143,7 @@
                     "200": {
                         "description": "A single user",
                         "schema": {
-                            "$ref": "#/definitions/UserIdentity"
+                            "$ref": "#/definitions/User"
                         }
                     }
                 },
@@ -4173,7 +4173,7 @@
                     "200": {
                         "description": "A single user",
                         "schema": {
-                            "$ref": "#/definitions/UserIdentity"
+                            "$ref": "#/definitions/User"
                         }
                     }
                 },
@@ -4683,297 +4683,6 @@
             ]
         },
         "User": {
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "A universally unique identifier.",
-                    "example": "6f072ba8-c510-40ac-b387-51f582650e27"
-                },
-                "preferredLanguage": {
-                    "type": "string",
-                    "example": "nl"
-                },
-                "nick": {
-                    "type": "string",
-                    "example": "El Pistolero"
-                },
-                "password": {
-                    "type": "string",
-                    "example": "***"
-                },
-                "givenName": {
-                    "type": "string",
-                    "example": "Alberto"
-                },
-                "familyName": {
-                    "type": "string",
-                    "example": "Contador"
-                },
-                "mbox": {
-                    "type": "string",
-                    "example": "alberto@email.es"
-                },
-                "mboxVerified": {
-                    "type": "boolean",
-                    "example": true
-                },
-                "gender": {
-                    "type": "string",
-                    "example": "male"
-                },
-                "hasChildren": {
-                    "type": "boolean",
-                    "example": false
-                },
-                "dob": {
-                    "type": "string",
-                    "example": "413074800"
-                },
-                "depiction": {
-                    "type": "string",
-                    "example": "//media.uitid.be/fis/rest/download/ce126667652776f0e9e55160f12f5478/uiv/default.png"
-                },
-                "bio": {
-                    "type": "string",
-                    "example": "Alberto Contador is a Spanish professional cyclist, one of six riders to have won all three Grand Tours of road cycling."
-                },
-                "street": {
-                    "type": "string",
-                    "example": "Camino de San Anton"
-                },
-                "zip": {
-                    "type": "string",
-                    "example": 28320
-                },
-                "city": {
-                    "type": "string",
-                    "example": "Madrid"
-                },
-                "country": {
-                    "type": "string",
-                    "example": "Spain"
-                },
-                "lifestyleProfile": {
-                    "type": "string",
-                    "example": "Actieve ontspanner"
-                },
-                "homeLocation": {
-                    "$ref": "#/definitions/UserLocation"
-                },
-                "currentLocation": {
-                    "$ref": "#/definitions/UserLocation"
-                },
-                "status": {
-                    "type": "string",
-                    "example": "public"
-                },
-                "points": {
-                    "type": "string",
-                    "example": "15"
-                },
-                "openid": {
-                    "type": "string"
-                },
-                "holdsAccount": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/UserAccountType"
-                    }
-                },
-                "privacyConfig": {
-                    "$ref": "#/definitions/UserPrivacyConfig"
-                },
-                "pageMemberships": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "adminPagesCount": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 5
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "UserLocation": {
-            "properties": {
-                "lat": {
-                    "type": "number",
-                    "format": "float",
-                    "example": "40.2410067"
-                },
-                "lng": {
-                    "type": "number",
-                    "format": "float",
-                    "example": "-3.688426"
-                },
-                "radius": {
-                    "type": "number",
-                    "format": "float",
-                    "example": 3.45
-                }
-            }
-        },
-        "UserAccountType": {
-            "properties": {
-                "accountType": {
-                    "type": "string",
-                    "example": "google"
-                },
-                "accountServiceHomepage": {
-                    "type": "string",
-                    "example": "http://www.google.com"
-                },
-                "accountName": {
-                    "type": "string",
-                    "example": 101802992566828990000
-                },
-                "accountNick": {
-                    "type": "string",
-                    "example": "El Pistolero"
-                },
-                "accountDepiction": {
-                    "type": "string",
-                    "example": "//media.uitid.be/fis/download/ce126667652776f0e9e55160f12f5478/6e57ac2f-ca1c-460d-9f28-ad7506da7ed1/photo.jpg"
-                },
-                "private": {
-                    "type": "boolean",
-                    "example": true
-                },
-                "publishActivities": {
-                    "type": "boolean",
-                    "example": false
-                }
-            }
-        },
-        "UserPrivacyConfig": {
-            "properties": {
-                "nick": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "private"
-                },
-                "givenName": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "private"
-                },
-                "familyName": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "private"
-                },
-                "mbox": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "private"
-                },
-                "gender": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "public"
-                },
-                "dob": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "public"
-                },
-                "depiction": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "public"
-                },
-                "bio": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "public"
-                },
-                "homeAddress": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "private"
-                },
-                "homeLocation": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "private"
-                },
-                "currentLocation": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "private"
-                },
-                "openid": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "private"
-                },
-                "calendarId": {
-                    "type": "string",
-                    "enum": [
-                        "private",
-                        "public"
-                    ],
-                    "example": "private"
-                }
-            },
-            "required": [
-                "nick",
-                "givenName",
-                "familyName",
-                "mbox",
-                "gender",
-                "dob",
-                "depiction",
-                "bio",
-                "homeAddress",
-                "homeLocation",
-                "currentLocation",
-                "calendarId"
-            ]
-        },
-        "UserIdentity": {
             "required": [
                 "uuid",
                 "email",
@@ -6457,7 +6166,7 @@
                 "member": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/UserIdentity"
+                        "$ref": "#/definitions/User"
                     }
                 }
             },
