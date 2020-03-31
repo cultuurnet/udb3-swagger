@@ -2435,7 +2435,28 @@
                     "Organizer",
                     "Address"
                 ]
+            },
+            "delete": {
+                "summary": "Delete an address of a specific organizer",
+                "operationId": "deleteAddress",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/cdbid"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Action successfully executed."
+                    }
+                },
+                "tags": [
+                    "Organizer"
+                ]
             }
+
         },
         "/organizers/{cdbId}/address/{lang}": {
             "put": {
