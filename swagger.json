@@ -4395,6 +4395,37 @@
                     }
                 }
             }
+        },
+        "/productions/{toProductionId}/merge/{fromProductionId}": {
+            "post": {
+                "summary": "Move all events from a existing production to another production.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "toProductionId",
+                        "in": "path",
+                        "description": "The unique identifier of the production where events need to be moved to.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    {
+                        "name": "fromProductionId",
+                        "in": "path",
+                        "description": "The unique identifier of the production where events need to be moved from.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Events were successfully moved to the new production."
+                    }
+                }
+            }
         }
     },
     "tags": [
