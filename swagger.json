@@ -6169,7 +6169,8 @@
                 "AANBOD_VERWIJDEREN",
                 "ORGANISATIES_BEHEREN",
                 "GEBRUIKERS_BEHEREN",
-                "LABELS_BEHEREN"
+                "LABELS_BEHEREN",
+                "PRODUCTIES_AANMAKEN"
             ]
         },
         "UserSearchResult": {
