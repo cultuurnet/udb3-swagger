@@ -4309,6 +4309,31 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "summary": "Combines two (or more) events into a new production",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Payload to create a new production from existing events",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateProduction"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Production successfully created."
+                    },
+                    "400": {
+                        "description": "Invalid or incomplete data was passed to the endpoint"
+                    }
+                }
             }
         }
     },
@@ -6301,6 +6326,28 @@
                     }
                 }
             }
+        },
+        "CreateProduction": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Hamilton"
+                },
+                "eventIds": {
+                    "type": "array",
+                    "minItems": 2,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "description": "A uuid identifying an event",
+                        "example": "13518167-4582-4724-820a-d4ef0bff7976"
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "eventIds"
+            ]
         }
     },
     "parameters": {
