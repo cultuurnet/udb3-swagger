@@ -4304,7 +4304,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/production"
+                                "$ref": "#/definitions/Production"
                             }
                         }
                     }
