@@ -4282,6 +4282,34 @@
                     "Role"
                 ]
             }
+        },
+        "/productions": {
+            "get": {
+                "summary": "Get a list of existing productions filtered by a search string",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "The name or part of the name of the production(s) to search (case-insensitive).",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of productions.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/production"
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "tags": [
@@ -6252,6 +6280,25 @@
                         "education"
                     ],
                     "example": "everyone"
+                }
+            }
+        },
+        "Production": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Hamilton"
+                },
+                "production_id": {
+                    "type": "string",
+                    "example": "442f7319-e986-4b08-aa66-925070629782"
+                },
+                "events": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "example": "13518167-4582-4724-820a-d4ef0bff7976"
+                    }
                 }
             }
         }
