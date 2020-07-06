@@ -4365,6 +4365,35 @@
                         "description": "Event successfully added to production."
                     }
                 }
+            },
+            "delete": {
+                "summary": "Remove an event from an existing production.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productionId",
+                        "in": "path",
+                        "description": "The unique identifier of the production.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "description": "The unique identifier of the event.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Event successfully removed from production."
+                    }
+                }
             }
         }
     },
