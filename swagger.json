@@ -4308,7 +4308,10 @@
                             }
                         }
                     }
-                }
+                },
+                "tags": [
+                    "Productions"
+                ]
             },
             "post": {
                 "summary": "Combines two (or more) events into a new production",
@@ -4333,7 +4336,10 @@
                     "400": {
                         "description": "Invalid or incomplete data was passed to the endpoint"
                     }
-                }
+                },
+                "tags": [
+                    "Productions"
+                ]
             }
         },
         "/productions/{productionId}/events/{eventId}": {
@@ -4364,7 +4370,10 @@
                     "204": {
                         "description": "Event successfully added to production."
                     }
-                }
+                },
+                "tags": [
+                    "Productions"
+                ]
             },
             "delete": {
                 "summary": "Remove an event from an existing production.",
@@ -4393,7 +4402,10 @@
                     "204": {
                         "description": "Event successfully removed from production."
                     }
-                }
+                },
+                "tags": [
+                    "Productions"
+                ]
             }
         },
         "/productions/{toProductionId}/merge/{fromProductionId}": {
@@ -4424,7 +4436,10 @@
                     "204": {
                         "description": "Events were successfully moved to the new production."
                     }
-                }
+                },
+                "tags": [
+                    "Productions"
+                ]
             }
         }
     },
@@ -4480,6 +4495,10 @@
         {
             "name": "Permission",
             "description": "Operations related to permissions."
+        },
+        {
+            "name": "Productions",
+            "description": "Operations related to productions."
         }
     ],
     "definitions": {
