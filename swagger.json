@@ -4465,6 +4465,36 @@
                 ]
             }
         },
+        "/productions/skip": {
+            "post": {
+                "summary": "Skip suggestion pair (permanently)",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Payload to skip suggestion pair",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SkipSuggestionPair"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Suggestion pair successfully skipped."
+                    },
+                    "400": {
+                        "description": "Invalid or incomplete data was passed to the endpoint"
+                    }
+                },
+                "tags": [
+                    "Productions"
+                ]
+            }
+        }
     },
     "tags": [
         {
@@ -6499,6 +6529,24 @@
                     }
                 }
             }
+        },
+        "SkipSuggestionPair": {
+            "properties": {
+                "eventIds": {
+                    "type": "array",
+                    "minItems": 2,
+                    "uniqueItems": true,
+                    "items": 
+                        {
+                        "type": "string",
+                        "description": "A uuid identifying an event",
+                        "example": "13518167-4582-4724-820a-d4ef0bff7976"
+                        }
+                }
+            },
+            "required": [
+                "eventIds"
+            ]
         }
     },
     "parameters": {
