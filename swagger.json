@@ -4441,7 +4441,30 @@
                     "Productions"
                 ]
             }
-        }
+        },
+        "/productions/suggestion/": {
+            "get": {
+                "summary": "Get next suggestion pair",
+                "description": "Authentication required",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of permissions",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Event"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Productions"
+                ]
+            }
+        },
     },
     "tags": [
         {
@@ -6447,17 +6470,35 @@
                     "type": "array",
                     "minItems": 2,
                     "uniqueItems": true,
-                    "items": {
+                    "items": [
+                        {
                         "type": "string",
                         "description": "A uuid identifying an event",
                         "example": "13518167-4582-4724-820a-d4ef0bff7976"
-                    }
+                        },
+                        {
+                        "type": "string",
+                        "description": "A uuid identifying an event",
+                        "example": "13518167-4582-4724-820a-d4ef0bff7976"
+                        }   
+                    ]
                 }
             },
             "required": [
                 "name",
                 "eventIds"
             ]
+        },
+        "SuggestionPair": { 
+            "properties": {
+                "events": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                         "$ref": "#/definitions/Permission"
+                    }
+                }
+            }
         }
     },
     "parameters": {
