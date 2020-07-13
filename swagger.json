@@ -6524,8 +6524,7 @@
                 "events": {
                     "type": "array",
                     "items": {
-                        "type": "string",
-                         "$ref": "#/definitions/Permission"
+                         "$ref": "#/definitions/Event"
                     }
                 }
             }
