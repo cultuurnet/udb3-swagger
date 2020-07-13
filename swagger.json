@@ -4444,14 +4444,14 @@
         },
         "/productions/suggestion/": {
             "get": {
-                "summary": "Get next suggestion pair",
+                "summary": "Get a list of suggested similar events",
                 "description": "Authentication required",
                 "produces": [
                     "application/ld+json"
                 ],
                 "responses": {
                     "200": {
-                        "description": "A list of permissions",
+                        "description": "A list of suggested similar events",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -6510,7 +6510,7 @@
                         "type": "string",
                         "description": "A uuid identifying an event",
                         "example": "13518167-4582-4724-820a-d4ef0bff7976"
-                        }   
+                        }
                     ]
                 }
             },
@@ -6519,7 +6519,7 @@
                 "eventIds"
             ]
         },
-        "SuggestionPair": { 
+        "SuggestionPair": {
             "properties": {
                 "events": {
                     "type": "array",
@@ -6536,7 +6536,7 @@
                     "type": "array",
                     "minItems": 2,
                     "uniqueItems": true,
-                    "items": 
+                    "items":
                         {
                         "type": "string",
                         "description": "A uuid identifying an event",
