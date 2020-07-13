@@ -6502,14 +6502,9 @@
                     "uniqueItems": true,
                     "items": [
                         {
-                        "type": "string",
-                        "description": "A uuid identifying an event",
-                        "example": "13518167-4582-4724-820a-d4ef0bff7976"
-                        },
-                        {
-                        "type": "string",
-                        "description": "A uuid identifying an event",
-                        "example": "13518167-4582-4724-820a-d4ef0bff7976"
+                            "type": "string",
+                            "description": "A uuid identifying an event",
+                            "example": "13518167-4582-4724-820a-d4ef0bff7976"
                         }
                     ]
                 }
