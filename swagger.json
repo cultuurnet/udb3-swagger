@@ -4282,6 +4282,218 @@
                     "Role"
                 ]
             }
+        },
+        "/productions": {
+            "get": {
+                "summary": "Get a list of existing productions filtered by a search string",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "The name or part of the name of the production(s) to search (case-insensitive).",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of productions.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Production"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Productions"
+                ]
+            },
+            "post": {
+                "summary": "Combines two (or more) events into a new production",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Payload to create a new production from existing events",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateProduction"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Production successfully created."
+                    },
+                    "400": {
+                        "description": "Invalid or incomplete data was passed to the endpoint"
+                    }
+                },
+                "tags": [
+                    "Productions"
+                ]
+            }
+        },
+        "/productions/{productionId}/events/{eventId}": {
+            "put": {
+                "summary": "Add an event to an existing production.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productionId",
+                        "in": "path",
+                        "description": "The unique identifier of the production.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "description": "The unique identifier of the event.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Event successfully added to production."
+                    }
+                },
+                "tags": [
+                    "Productions"
+                ]
+            },
+            "delete": {
+                "summary": "Remove an event from an existing production.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "productionId",
+                        "in": "path",
+                        "description": "The unique identifier of the production.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "description": "The unique identifier of the event.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Event successfully removed from production."
+                    }
+                },
+                "tags": [
+                    "Productions"
+                ]
+            }
+        },
+        "/productions/{toProductionId}/merge/{fromProductionId}": {
+            "post": {
+                "summary": "Move all events from a existing production to another production.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "toProductionId",
+                        "in": "path",
+                        "description": "The unique identifier of the production where events need to be moved to.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    {
+                        "name": "fromProductionId",
+                        "in": "path",
+                        "description": "The unique identifier of the production where events need to be moved from.",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Events were successfully moved to the new production."
+                    }
+                },
+                "tags": [
+                    "Productions"
+                ]
+            }
+        },
+        "/productions/suggestion/": {
+            "get": {
+                "summary": "Get a list of suggested similar events",
+                "description": "Authentication required",
+                "produces": [
+                    "application/ld+json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of suggested similar events",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Event"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Productions"
+                ]
+            }
+        },
+        "/productions/skip": {
+            "post": {
+                "summary": "Skip suggestion pair (permanently)",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Payload to skip suggestion pair",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SkipSuggestionPair"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Suggestion pair successfully skipped."
+                    },
+                    "400": {
+                        "description": "Invalid or incomplete data was passed to the endpoint"
+                    }
+                },
+                "tags": [
+                    "Productions"
+                ]
+            }
         }
     },
     "tags": [
@@ -4336,6 +4548,10 @@
         {
             "name": "Permission",
             "description": "Operations related to permissions."
+        },
+        {
+            "name": "Productions",
+            "description": "Operations related to productions."
         }
     ],
     "definitions": {
@@ -6169,7 +6385,8 @@
                 "AANBOD_VERWIJDEREN",
                 "ORGANISATIES_BEHEREN",
                 "GEBRUIKERS_BEHEREN",
-                "LABELS_BEHEREN"
+                "LABELS_BEHEREN",
+                "PRODUCTIES_AANMAKEN"
             ]
         },
         "UserSearchResult": {
@@ -6253,6 +6470,76 @@
                     "example": "everyone"
                 }
             }
+        },
+        "Production": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Hamilton"
+                },
+                "production_id": {
+                    "type": "string",
+                    "example": "442f7319-e986-4b08-aa66-925070629782"
+                },
+                "events": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "example": "13518167-4582-4724-820a-d4ef0bff7976"
+                    }
+                }
+            }
+        },
+        "CreateProduction": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Hamilton"
+                },
+                "eventIds": {
+                    "type": "array",
+                    "minItems": 2,
+                    "uniqueItems": true,
+                    "items": [
+                        {
+                            "type": "string",
+                            "description": "A uuid identifying an event",
+                            "example": "13518167-4582-4724-820a-d4ef0bff7976"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "eventIds"
+            ]
+        },
+        "SuggestionPair": {
+            "properties": {
+                "events": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Event"
+                    }
+                }
+            }
+        },
+        "SkipSuggestionPair": {
+            "properties": {
+                "eventIds": {
+                    "type": "array",
+                    "minItems": 2,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "description": "A uuid identifying an event",
+                        "example": "13518167-4582-4724-820a-d4ef0bff7976"
+                    }
+                }
+            },
+            "required": [
+                "eventIds"
+            ]
         }
     },
     "parameters": {
