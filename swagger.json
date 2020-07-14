@@ -6519,7 +6519,7 @@
                 "events": {
                     "type": "array",
                     "items": {
-                         "$ref": "#/definitions/Event"
+                        "$ref": "#/definitions/Event"
                     }
                 }
             }
