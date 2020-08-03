@@ -4318,7 +4318,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/Production"
+                                "$ref": "#/definitions/ProductionSearchResult"
                             }
                         }
                     }
@@ -6484,6 +6484,31 @@
                     "example": "everyone"
                 }
             }
+        },
+        "ProductionSearchResult": {
+            "properties": {
+                "itemsPerPage": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 30
+                },
+                "totalItems": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 3562
+                },
+                "member": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Production"
+                    }
+                }
+            },
+            "required": [
+                "itemsPerPage",
+                "totalItems",
+                "member"
+            ]
         },
         "Production": {
             "properties": {
