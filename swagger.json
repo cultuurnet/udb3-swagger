@@ -4296,6 +4296,20 @@
                         "description": "The name or part of the name of the production(s) to search (case-insensitive).",
                         "required": true,
                         "type": "string"
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "The number of productions to skip from the start of the result set. When omitted it starts from the first position (0).",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The limit of productions included in the result set. When omitted it defaults to 30 items.",
+                        "required": false,
+                        "type": "integer"
                     }
                 ],
                 "responses": {
