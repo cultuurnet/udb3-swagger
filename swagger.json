@@ -4283,7 +4283,7 @@
                 ]
             }
         },
-        "/productions": {
+        "/productions/": {
             "get": {
                 "summary": "Get a list of existing productions filtered by a search string",
                 "produces": [
