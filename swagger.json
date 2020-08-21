@@ -4294,7 +4294,7 @@
                         "name": "name",
                         "in": "query",
                         "description": "The name or part of the name of the production(s) to search (case-insensitive).",
-                        "required": true,
+                        "required": false,
                         "type": "string"
                     },
                     {
