@@ -4956,31 +4956,6 @@
                 }
             }
         },
-        "SearchResult": {
-            "properties": {
-                "itemsPerPage": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 30
-                },
-                "totalItems": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 3562
-                },
-                "member": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/SearchMember"
-                    }
-                }
-            },
-            "required": [
-                "itemsPerPage",
-                "totalItems",
-                "member"
-            ]
-        },
         "SearchMember": {
             "properties": {
                 "@id": {
@@ -5382,22 +5357,6 @@
                 "title"
             ]
         },
-        "commandWithAggregateUuid": {
-            "required": [
-                "commandId",
-                "uuid"
-            ],
-            "properties": {
-                "commandId": {
-                    "type": "string",
-                    "example": "8cdc13e62efaecb9d8c21d59a29b9de4"
-                },
-                "uuid": {
-                    "type": "string",
-                    "example": "0823f57e-a6bd-450a-b4f5-8459b4b11043"
-                }
-            }
-        },
         "postObjectWithEventDescription": {
             "properties": {
                 "description": {
@@ -5649,31 +5608,6 @@
                                 "http://culudb-silex.dev:8080/event/0823f57e-a6bd-450a-b4f5-8459b4b11043"
                             ]
                         }
-                    }
-                }
-            },
-            "required": [
-                "itemsPerPage",
-                "totalItems",
-                "member"
-            ]
-        },
-        "PagedCollection": {
-            "properties": {
-                "itemsPerPage": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 30
-                },
-                "totalItems": {
-                    "type": "integer",
-                    "format": "int32",
-                    "example": 1
-                },
-                "member": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Place"
                     }
                 }
             },
@@ -6553,16 +6487,6 @@
                 "eventIds"
             ]
         },
-        "SuggestionPair": {
-            "properties": {
-                "events": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Event"
-                    }
-                }
-            }
-        },
         "SkipSuggestionPair": {
             "properties": {
                 "eventIds": {
@@ -6661,12 +6585,6 @@
         }
     },
     "responses": {
-        "CommandQueued": {
-            "description": "Info on the command that was queued.",
-            "schema": {
-                "$ref": "#/definitions/CommandInfo"
-            }
-        },
         "Unauthorized": {
             "description": "Authentication with UiTID and a valid JWT is required."
         },
