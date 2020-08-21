@@ -4456,7 +4456,7 @@
                 ]
             }
         },
-        "/productions/suggestion/": {
+        "/productions/suggestion": {
             "get": {
                 "summary": "Get a list of suggested similar events",
                 "description": "Authentication required",
