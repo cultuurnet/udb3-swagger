@@ -2399,7 +2399,7 @@
         "/organizers/{cdbid}/address": {
             "put": {
                 "summary": "Update the address of a specific organizer",
-                "operationId": "updateAddress",
+                "operationId": "updateOrganizerAddress",
                 "produces": [
                     "application/json"
                 ],
@@ -2464,7 +2464,7 @@
                     "Organizer"
                 ],
                 "summary": "Update or translate the address of an organizer in a specific language.",
-                "operationId": "updateOrganizerAddress",
+                "operationId": "translateOrganizerAddress",
                 "produces": [
                     "application/json"
                 ],
@@ -5706,15 +5706,18 @@
                         "properties": {
                             "dayOfWeek": {
                                 "type": "array",
-                                "enum": [
-                                    "monday",
-                                    "tuesday",
-                                    "wednesday",
-                                    "thursday",
-                                    "friday",
-                                    "saturday",
-                                    "sunday"
-                                ],
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "monday",
+                                        "tuesday",
+                                        "wednesday",
+                                        "thursday",
+                                        "friday",
+                                        "saturday",
+                                        "sunday"
+                                    ]
+                                },
                                 "example": ["tuesday"]
                             },
                             "opens": {
@@ -5808,15 +5811,18 @@
                         "properties": {
                             "dayOfWeek": {
                                 "type": "array",
-                                "enum": [
-                                    "monday",
-                                    "tuesday",
-                                    "wednesday",
-                                    "thursday",
-                                    "friday",
-                                    "saturday",
-                                    "sunday"
-                                ],
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "monday",
+                                        "tuesday",
+                                        "wednesday",
+                                        "thursday",
+                                        "friday",
+                                        "saturday",
+                                        "sunday"
+                                    ]
+                                },
                                 "example": ["tuesday"]
                             },
                             "opens": {
@@ -6017,15 +6023,18 @@
                         "properties": {
                             "dayOfWeek": {
                                 "type": "array",
-                                "enum": [
-                                    "monday",
-                                    "tuesday",
-                                    "wednesday",
-                                    "thursday",
-                                    "friday",
-                                    "saturday",
-                                    "sunday"
-                                ],
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "monday",
+                                        "tuesday",
+                                        "wednesday",
+                                        "thursday",
+                                        "friday",
+                                        "saturday",
+                                        "sunday"
+                                    ]
+                                },
                                 "example": ["tuesday"]
                             },
                             "opens": {
