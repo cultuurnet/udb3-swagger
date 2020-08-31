@@ -2399,7 +2399,7 @@
         "/organizers/{cdbid}/address": {
             "put": {
                 "summary": "Update the address of a specific organizer",
-                "operationId": "updateAddress",
+                "operationId": "updateOrganizerAddress",
                 "produces": [
                     "application/json"
                 ],
@@ -2464,7 +2464,7 @@
                     "Organizer"
                 ],
                 "summary": "Update or translate the address of an organizer in a specific language.",
-                "operationId": "updateOrganizerAddress",
+                "operationId": "translateOrganizerAddress",
                 "produces": [
                     "application/json"
                 ],
@@ -4465,12 +4465,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "A list of suggested similar events",
+                        "description": "A pair of suggested similar events and a similarity score",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Event"
-                            }
+                            "$ref": "#/definitions/SuggestionPair"
                         }
                     }
                 },
@@ -5709,15 +5706,18 @@
                         "properties": {
                             "dayOfWeek": {
                                 "type": "array",
-                                "enum": [
-                                    "monday",
-                                    "tuesday",
-                                    "wednesday",
-                                    "thursday",
-                                    "friday",
-                                    "saturday",
-                                    "sunday"
-                                ],
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "monday",
+                                        "tuesday",
+                                        "wednesday",
+                                        "thursday",
+                                        "friday",
+                                        "saturday",
+                                        "sunday"
+                                    ]
+                                },
                                 "example": ["tuesday"]
                             },
                             "opens": {
@@ -5811,15 +5811,18 @@
                         "properties": {
                             "dayOfWeek": {
                                 "type": "array",
-                                "enum": [
-                                    "monday",
-                                    "tuesday",
-                                    "wednesday",
-                                    "thursday",
-                                    "friday",
-                                    "saturday",
-                                    "sunday"
-                                ],
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "monday",
+                                        "tuesday",
+                                        "wednesday",
+                                        "thursday",
+                                        "friday",
+                                        "saturday",
+                                        "sunday"
+                                    ]
+                                },
                                 "example": ["tuesday"]
                             },
                             "opens": {
@@ -6020,15 +6023,18 @@
                         "properties": {
                             "dayOfWeek": {
                                 "type": "array",
-                                "enum": [
-                                    "monday",
-                                    "tuesday",
-                                    "wednesday",
-                                    "thursday",
-                                    "friday",
-                                    "saturday",
-                                    "sunday"
-                                ],
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "monday",
+                                        "tuesday",
+                                        "wednesday",
+                                        "thursday",
+                                        "friday",
+                                        "saturday",
+                                        "sunday"
+                                    ]
+                                },
                                 "example": ["tuesday"]
                             },
                             "opens": {
@@ -6473,19 +6479,32 @@
                     "type": "array",
                     "minItems": 2,
                     "uniqueItems": true,
-                    "items": [
-                        {
-                            "type": "string",
-                            "description": "A uuid identifying an event",
-                            "example": "13518167-4582-4724-820a-d4ef0bff7976"
-                        }
-                    ]
+                    "items": {
+                        "type": "string",
+                        "description": "A uuid identifying an event",
+                        "example": "13518167-4582-4724-820a-d4ef0bff7976"
+                    }
                 }
             },
             "required": [
                 "name",
                 "eventIds"
             ]
+        },
+        "SuggestionPair": {
+            "properties": {
+                "events": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Event"
+                    }
+                },
+                "similarity": {
+                    "type": "number",
+                    "example": 0.9,
+                    "description": "A score between 0 and 1 indicating how similar the two events are."
+                }
+            }
         },
         "SkipSuggestionPair": {
             "properties": {
