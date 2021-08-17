@@ -1,3 +1,7 @@
+# WARNING!
+
+This repository is obsolete. See https://docs.publiq.be for the latest UiTdatabank API documentation.
+
 # UDB3 Swagger
 
 [![Build Status](https://travis-ci.org/cultuurnet/udb3-swagger.svg?branch=master)](https://travis-ci.org/cultuurnet/udb3-swagger)
